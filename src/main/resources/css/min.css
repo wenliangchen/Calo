@@ -1,0 +1,106 @@
+.m-padded-mini{
+    padding: 0.2em !important;
+}
+.m-padded-tiny{
+    padding: 0.3em !important;
+}
+.m-padded-tb-mini {
+    padding-top: 0.2em !important;
+    padding-bottom: 0.2em !important;
+}
+.m-padded-tb-tiny {
+    padding-top: 0.3em !important;
+    padding-bottom: 0.3em !important;
+}
+.m-padded-tb-small {
+    padding-top: 0.5em !important;
+    padding-bottom: 0.5em !important;
+}
+.m-padded-tb{
+    padding-top: 1em !important;
+    padding-bottom: 1em !important;
+}
+.m-padded-tb-large {
+    padding-top: 2em !important;
+    padding-bottom: 2em !important;
+}
+.m-padded-tb-big {
+    padding-top: 3em !important;
+    padding-bottom: 3em !important;
+}
+.m-padded-tb-huge {
+    padding-top: 4em !important;
+    padding-bottom: 4em !important;
+}
+.m-padded-tb-massive {
+    padding-top: 5em !important;
+    padding-bottom: 5em !important;
+}
+
+/* ----- front-------*/
+.m-front{
+    font-weight:200 !important;
+    letter-spacing:1px !important;
+    line-height:1.8;
+}
+
+.m-front-thin {
+    font-weight:200 !important;
+}
+.m-front-spaced{
+    letter-spacing:1px !important;
+}
+.m-front-lined{
+    line-height:1.8;
+}
+/*--------------opacity----------------*/
+
+.m-opacity-mini{
+    opacity:0.8 !important;
+}
+
+/*-------------mobile-----------------*/
+.m-right-top-mobile{
+    position:absolute;
+    top: 0;
+    right: 0;
+}
+.m-mobile-show{
+    display:none!important;
+}
+@media screen and (max-width: 768px) {
+    .m-hidden-mobile{
+        display:none!important;
+    }
+    .m-mobile-show{
+        display:block!important;
+    }
+}
+
+/*--------------margin----------------*/
+.m-margin-tb-tiny {
+    margin-top: 0.3em !important;
+    margin-bottom: 0.3em !important;
+}
+.m-margin-top-small{
+    margin-top:0.5em !important;
+}
+.m-margin-top{
+    margin-top:1em !important;
+}
+.m-margin-top-large{
+    margin-top:2em !important;
+}
+/*-----------display content-----------*/
+.m-inline-block{
+    display: inline-block !important;
+}
+/*-----------container-----------*/
+.m-container{
+    max-width:72em !important;
+    margin:auto !important;
+}
+/*-----------color-----------*/
+.m-black{
+    color:#333 !important;
+}
