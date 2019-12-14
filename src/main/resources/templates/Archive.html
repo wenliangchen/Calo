@@ -1,22 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="_fragments :: head(~{::title})">
     <meta charset="UTF-8">
     <neta name = "viewport" content="width=device-width,initial-scale =1.0"></neta>
     <title>Archive</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
-    <link rel="stylesheet" href="static/css/min.css">
+    <link rel="stylesheet" href="../static/css/min.css">
 </head>
 <body>
 
 <!--nav -->
-<nav class="ui inverted attached segment m-padded-tb-mini m-shadow-small">
+<nav th:replace="_fragments :: menu(4)" class="ui inverted attached segment m-padded-tb-mini">
     <div class="container">
         <div class="ui inverted secondary stackable menu ">
-            <h2 class = "ui blue header item">Blog</h2>
+            <h2 class = "ui blue header item">Archive</h2>
             <a href="index.html" class="m-item item m-hidden-mobile"><i class="home icon"></i> Main</a>
             <a href="index.html" class="m-item item m-hidden-mobile"><i class="idea icon"></i>Catalogue</a>
-            <a href="index.html" class="active m-item item m-hidden-mobile"><i class="tags icon"></i>Tags</a>
+            <a href="index.html" class="m-item item m-hidden-mobile"><i class="tags icon"></i>Tags</a>
             <a href="index.html" class="m-item item m-hidden-mobile"><i class="clone icon"></i>Archive</a>
             <a href="index.html" class="m-item item m-hidden-mobile"><i class="info icon"></i>About</a>
             <div class="right m-item item m-hidden-mobile">
@@ -128,13 +128,13 @@
 <br>
 <br>
 <!-- footer-->
-<footer class="ui inverted vertical segment m-padded-tb-massive">
+<footer th:replace="_fragments :: footer" class="ui inverted vertical segment m-padded-tb-massive">
     <div class="ui center aligned container">
         <div class="ui inverted divided stackable grid">
             <div class="three wide column">
                 <div class="ui inverted link list">
                     <div class="item">
-                        <img src="./static/images/wechat.jpg" class="ui rounded image" alt="" style="width:110px">
+                        <img src="../static/images/wechat.jpg" th:src="@{/images/wechat.jpg}" class="ui rounded image" alt="" style="width:110px">
                     </div>
                 </div>
             </div>
@@ -164,9 +164,10 @@
         <p class="m-front-thin m-front-spaced m-opacity-tiny">Copyright @2019 Designed by Jokephp</p>
     </div>
 </footer>
+<!--/*/<th:block th:replace="_fragments :: script">/*/-->
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
-
+<!--/*/</th:block>/*/-->
 <script>
     $('.menu.toggle').click(function(){
         $('.m-item').toggleClass('m-hidden-mobile');

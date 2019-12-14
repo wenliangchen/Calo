@@ -1,8 +1,7 @@
-package run.calo.app;
+package run.cola.app;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-
 
 @SpringBootApplication
 public class AppApplication {
