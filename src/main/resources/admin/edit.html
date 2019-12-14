@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <neta name = "viewport" content="width=device-width,initial-scale =1.0"></neta>
+    <title>Admin Pages-Edit</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+    <link rel="stylesheet" href="../static/css/min.css">
+</head>
+<body>
+
+<!--nav -->
+<nav class="ui inverted attached segment m-padded-tb-mini m-shadow-small">
+    <div class="container">
+        <div class="ui inverted secondary stackable menu ">
+            <h2 class = "ui blue header item">Blog</h2>
+            <a href="index.html" class="m-item active item m-hidden-mobile"><i class="home icon"></i> Main</a>
+            <a href="index.html" class="m-item item m-hidden-mobile"><i class="idea icon"></i>Catalogue</a>
+            <a href="index.html" class="m-item item m-hidden-mobile"><i class="tags icon"></i>Tags</a>
+            <div class="right menu">
+                <div class="ui m-item m-hidden-mobile dropdown item">
+                    <div class="text">
+                        <img class="ui avatar image" src="https://picsum.photos/id/1010/100/100">
+                        Jokephp
+                    </div>
+                    <i class="dropdown icon"></i>
+                    <div class="menu">
+                        <a href="#" class="item">
+                            Logout
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a href="#" class="ui menu toggle black icon button m-right-top-mobile m-mobile-show">
+        <i class="sidebar icon"></i>
+    </a>
+</nav>
+<nav>
+    <div class="ui attached pointing menu">
+        <div class="ui container">
+            <div class="right menu">
+                <a href="#" class="item">Push</a>
+                <a href="#" class="active blue item">List</a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!--middle -->
+<div class="m-container-small m-padded-tb-big">
+    <div class="ui container">
+        <form action="#" method="post" class="ui form">
+            <div class="required field">
+                <div class="ui left labeled input">
+                    <div class="ui selection compact blue basic dropdown label">
+                        <input type="hidden" value="Own">
+                        <i class="dropdown icon"></i>
+                        <div class="text">Own</div>
+                        <div class="menu">
+                            <div class="item" data-value="Own">Own</div>
+                            <div class="item" data-value="Own">Own</div>
+                            <div class="item" data-value="Own">Own</div>
+                        </div>
+                    </div>
+                    <input type="text" name="title" placeholder="Title">
+                </div>
+            </div>
+            <div class="field">
+                <textarea placeholder="Blog content" name="content"></textarea>
+            </div>
+
+            <div class="two fields">
+                <div class="field">
+                    <div class="ui left labeled action input">
+                        <label class="ui  compact blue basic label">Catalogue</label>
+                        <div class="ui fluid selection dropdown">
+                            <input type="hidden">
+                            <i class="dropdown icon"></i>
+                            <div class="default text">Catalogue</div>
+                            <div class="menu">
+                                <div class="item" data-value="1">ooo</div>
+                                <div class="item" data-value="2">www</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="ui left labeled action input">
+                        <label class="ui compact blue basic label">Tags</label>
+                        <div class="ui fluid multiple search selection dropdown">
+                            <input type="hidden" name="tags">
+                            <i class="dropdown icon"></i>
+                            <div class="default text">Tags</div>
+                            <div class="menu">
+                                <div class="item" data-value="1">Java</div>
+                                <div class="item" data-value="2">C</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="field">
+                <div class="ui left labeled input">
+                    <label class="ui blue basic label">Picture</label>
+                    <input type="text" name="indexPicture" placeholder="imageForIndex">
+                </div>
+            </div>
+            <div class="inline fields">
+                <div class="field">
+                    <div class="ui checkbox">
+                        <input type="checkbox" id="recommend" name="recommend" class="hidden">
+                        <label for="recommend">recommend</label>
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="ui checkbox">
+                        <input type="checkbox" id="shareInfo" name="shareInfo" class="hidden">
+                        <label for="shareInfo">shareInfo</label>
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="ui checkbox">
+                        <input type="checkbox" id="appreciation" name="appreciation" class="hidden">
+                        <label for="appreciation">appreciation</label>
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="ui checkbox">
+                        <input type="checkbox" id="comment" name="comment" class="hidden">
+                        <label for="comment">comment</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="ui error message"></div>
+            <div class="ui right aligned container">
+                <button type="type" class="ui button" onclick="window.history.go(-1)"> Back</button>
+                <button class="ui secondary button">Save</button>
+                <button class="ui blue blue button">Push</button>
+            </div>
+        </form>
+    </div>
+</div>
+<br>
+<br>
+<!-- footer-->
+<footer class="ui inverted vertical segment m-padded-tb-massive">
+    <div class="ui center aligned container">
+        <div class="ui inverted divided stackable grid">
+            <div class="three wide column">
+                <div class="ui inverted link list">
+                    <div class="item">
+                        <img src="./static/images/wechat.jpg" class="ui rounded image" alt="" style="width:110px">
+                    </div>
+                </div>
+            </div>
+            <div class="three wide column">
+                <h4 class="ui inverted header m-front-thin m-front-spaced ">New Blog:</h4>
+                <div class="ui inverted link list">
+                    <a href="#" class="item">The story</a>
+                    <a href="#" class="item">The story</a>
+                    <a href="#" class="item">The story</a>
+                </div>
+            </div>
+            <div class="three wide column">
+                <h4 class="ui inverted header m-front-thin m-front-spaced ">Contact:</h4>
+                <div class="ui inverted link list">
+                    <a href="#" class="item">wenliangchen@yahoo.com</a>
+                    <a href="#" class="item">Github</a>
+                </div>
+            </div>
+            <div class="seven wide column">
+                <h4 class="ui inverted header m-front-thin m-front-spaced ">New:</h4>
+                <div class="ui inverted link list">
+                    <p class="m-front-thin m-front-spaced m-opacity-mini">this is my blog.</p>
+                </div>
+            </div>
+        </div>
+        <div class="ui inverted section divider"></div>
+        <p class="m-front-thin m-front-spaced m-opacity-tiny">Copyright @2019 Designed by Jokephp</p>
+    </div>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+
+<script>
+    $('.menu.toggle').click(function(){
+        $('.m-item').toggleClass('m-hidden-mobile');
+    })
+    $('.ui.dropdown').dropdown({
+        on:'hover'
+    });
+    $('.ui.form').form({
+        fields:{
+            titel :{
+                identifier: 'title',
+                rules: [{
+                    type:'empty',
+                    prompt:'Title:Please type the Blog title'
+                }]
+            }
+        }
+    });
+
+
+
+</script>
+</body>
+</html>

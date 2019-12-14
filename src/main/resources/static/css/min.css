@@ -1,5 +1,5 @@
 body{
-    background: url("../static/images/bg.png");
+    background: url("../images/bg.png");
 }
 .m-padded-mini{
     padding: 0.2em !important;
@@ -19,6 +19,9 @@ body{
     padding-top: 0.5em !important;
     padding-bottom: 0.5em !important;
 }
+.m-padded{
+    padding: 1em !important;
+ }
 .m-padded-tb{
     padding-top: 1em !important;
     padding-bottom: 1em !important;
@@ -87,6 +90,10 @@ body{
         padding-left: 0 !important;
         padding-right: 0 !important;
     }
+    .mobile-lr-clear{
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
     .m-mobile-wide{
         width: 100% !important;
     }
@@ -123,6 +130,22 @@ body{
 .m-container-small{
     max-width:60em !important;
     margin:auto !important;
+}
+
+/*--------------shadow---------*/
+.m-shadow-small{
+    -webkit-box-shadow: 0 4px 8px rgba(0,0,0,0.2) !important;
+    box-shadow:0 4px 8px rgba(0,0,0,0.2) !important;
+}
+
+/*-------------position----------*/
+.m-fixed{
+    position:fixed!important;
+    z-index: 1!important;
+}
+.m-right-bottom{
+    bottom: 0 !important;
+    right: 0 !important;
 }
 /*-----------color-----------*/
 .m-black{
