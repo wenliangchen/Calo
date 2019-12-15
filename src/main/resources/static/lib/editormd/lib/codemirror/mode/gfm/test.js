@@ -137,10 +137,10 @@
      "foo [link http://www.example.com/]. bar");
 
   MT("vanillaLinkExtension",
-     "foo [link http://www.example.com/index.html] bar");
+     "foo [link http://www.example.com/login.html] bar");
 
   MT("vanillaLinkEmphasis",
-     "foo [em *][em&link http://www.example.com/index.html][em *] bar");
+     "foo [em *][em&link http://www.example.com/login.html][em *] bar");
 
   MT("notALink",
      "[comment ```css]",
