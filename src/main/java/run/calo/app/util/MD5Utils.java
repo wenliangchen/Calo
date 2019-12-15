@@ -1,4 +1,4 @@
-package run.cola.app.util;
+package run.calo.app.util;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 

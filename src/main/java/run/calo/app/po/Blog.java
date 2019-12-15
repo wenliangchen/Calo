@@ -1,4 +1,4 @@
-package run.cola.app.po;
+package run.calo.app.po;
 
 import javax.persistence.*;
 import java.util.ArrayList;

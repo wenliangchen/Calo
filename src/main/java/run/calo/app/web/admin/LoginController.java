@@ -1,4 +1,4 @@
-package run.cola.app.web.admin;
+package run.calo.app.web.admin;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import run.cola.app.po.User;
-import run.cola.app.service.UserService;
+import run.calo.app.po.User;
+import run.calo.app.service.UserService;
 
 import javax.servlet.http.HttpSession;
 

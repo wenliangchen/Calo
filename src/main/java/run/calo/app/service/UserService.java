@@ -1,8 +1,8 @@
-package run.cola.app.service;
+package run.calo.app.service;
 
-import run.cola.app.po.User;
+import run.calo.app.po.User;
 
 public interface UserService {
 
-    User checkUser(String username,String password);
+    User checkUser(String username, String password);
 }

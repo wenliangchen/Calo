@@ -1,4 +1,4 @@
-package run.cola.app.interceptor;
+package run.calo.app.interceptor;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;

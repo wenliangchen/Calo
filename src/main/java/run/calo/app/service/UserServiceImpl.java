@@ -1,10 +1,10 @@
-package run.cola.app.service;
+package run.calo.app.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import run.cola.app.dao.UserRepository;
-import run.cola.app.po.User;
-import run.cola.app.util.MD5Utils;
+import run.calo.app.po.User;
+import run.calo.app.util.MD5Utils;
+import run.calo.app.dao.UserRepository;
 
 @Service
 public class UserServiceImpl implements UserService{

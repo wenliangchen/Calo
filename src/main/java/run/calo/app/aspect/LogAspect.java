@@ -1,4 +1,4 @@
-package run.cola.app.aspect;
+package run.calo.app.aspect;
 
 import org.aopalliance.intercept.Joinpoint;
 import org.aspectj.lang.JoinPoint;

@@ -1,7 +1,7 @@
-package run.cola.app.dao;
+package run.calo.app.dao;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import run.cola.app.po.User;
+import run.calo.app.po.User;
 
 public interface UserRepository extends JpaRepository<User,Long> {
 
