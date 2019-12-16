@@ -10,6 +10,7 @@ import run.calo.app.dao.TagRepository;
 import run.calo.app.po.Tag;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -34,6 +35,14 @@ public class TagServiceImpl implements TagService{
     public Tag getTagByName(String name) {
         return tagRepository.findByName(name);
     }
+
+    @Override
+    public String toString() {
+        return "TagServiceImpl{" +
+                "tagRepository=" + tagRepository +
+                '}';
+    }
+
     @Transactional
     @Override
     public Page<Tag> listTag(Pageable pageable) {
@@ -43,7 +52,26 @@ public class TagServiceImpl implements TagService{
     @Transactional
     @Override
     public List<Tag> listTag() {
-        return null;
+        return tagRepository.findAll();
+    }
+
+    @Transactional
+    @Override
+    public List<Tag> listTag(String ids) {
+        return tagRepository.findAllById(convertToList(ids));
+    }
+
+
+
+    private  List<Long> convertToList(String ids){
+        List<Long> list = new ArrayList<>();
+        if("".equals(ids) && ids != null){
+            String[] idarray = ids.split(",");
+            for (int i =0; i < idarray.length;i++){
+                list.add(new Long(idarray[i]));
+            }
+        }
+        return list;
     }
 
     @Transactional

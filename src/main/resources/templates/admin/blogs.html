@@ -51,19 +51,22 @@
 <!--middle -->
 <div class="m-container-small m-padded-tb-big">
     <div class="ui container">
-        <form action="#" method="post" class="ui segment form">
+        <div class="ui secondary segment form">
+            <input type="hidden" name="page">
             <div class="inline fields">
                 <div class="field">
                     <input type="text" name="title" placeholder="title">
                 </div>
                 <div class="field">
                     <div class="ui selection dropdown">
-                        <input type="hidden" name="type">
+                        <input type="hidden" name="typeId">
                         <i class="dropdown icon"></i>
                         <div class="default text">cataglous</div>
                         <div class="menu">
-                            <div class="item" data-value="1">menal</div>
+                            <div th:each="type:${types}" class="item" data-value="1" th:data-value="${type.id}" th:text="${type.name}">menal</div>
+                            <!--/*-->
                             <div class="item" data-value="2">test</div>
+                            <!--*/-->
                         </div>
                     </div>
                 </div>
@@ -74,11 +77,12 @@
                     </div>
                 </div>
                 <div class="field">
-                    <button class="ui mini blue basic button"><i class="search icon"></i> Search</button>
+                    <button type="button" id="search-btn" class="ui mini blue basic button"><i class="search icon"></i> Search</button>
                 </div>
             </div>
         </form>
-        <table class="ui celled table">
+        <div id="table-container">
+            <table th:fragment="blogList" class="ui compact blue table">
             <thead>
             <tr>
                 <th></th>
@@ -90,32 +94,39 @@
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <td>1</td>
-                <td>test</td>
-                <td>test</td>
-                <td>yes</td>
-                <td>time</td>
+            <tr th:each="blog,iterStat:${page.content}">
+                <td th:text="${iterStat.count}">1</td>
+                <td th:text="${blog.title}">test</td>
+                <td th:text="${blog.type.name}">test</td>
+                <td th:text="${blog.recommend} ? 'True':'False' ">yes</td>
+                <td th:text="${blog.updateTime}">time</td>
                 <td>
-                    <a href="#" class="ui mini blue basic button">Edit</a>
-                    <a href="#" class="ui mini red basic button">Delete</a>
+                    <a href="#" th:href="@{/admin/blogs/{id}/input(id=${blog.id})}" class="ui mini blue basic button">Edit</a>
+                    <a href="#" th:href="@{/admin/blogs/{id}/delete(id=${blog.id})}" class="ui mini red basic button">Delete</a>
                 </td>
             </tr>
             </tbody>
             <tfoot>
             <tr>
                 <th colspan="6">
-                    <div class="ui mini pagination menu">
-                        <a class="ui mini item">Prev</a>
-                        <a class="ui mini item">Next</a>
+                    <div class="ui mini pagination menu" th:if="${page.totalPages}>1">
+                        <a onclick="page(this)" th:attr="data-page=${page.number}-1" class="ui mini item" th:unless="${page.first}">Prev</a>
+                        <a onclick="page(this)" th:attr="data-page=${page.number}+1" class="ui mini item" th:unless="${page.last}">Next</a>
                     </div>
-                    <a class="ui mini right floated blue basic button">
+                    <a th:href="@{/admin/blogs/input}" class="ui mini right floated blue basic button">
                         Add new
                     </a>
                 </th>
             </tr>
             </tfoot>
         </table>
+                <div class="ui success message" th:unless="${#strings.isEmpty(message)}">
+                    <i class="close icon"></i>
+                    <div class="header">Remind:</div>
+                    <p th:text="${message}">Congrats,Succeed!</p>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 <br>
@@ -157,7 +168,7 @@
         <p class="m-front-thin m-front-spaced m-opacity-tiny">Copyright @2019 Designed by Jokephp</p>
     </div>
 </footer>
-<!--/*/<th:block th:replace="_fragments :: script">/*/-->
+<!--/*/<th:block th:replace="admin/_fragments :: script">/*/-->
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
 <!--/*/</th:block>/*/-->
@@ -169,7 +180,32 @@
         on:'hover'
     });
 
+    //bug here
+    $('.message.close').on('click',function () {
+        $(this).closest('.message')
+            .transition('fade');
 
+    });
+
+    function page(obj) {
+        $("[name='page']").val($(obj).data("page"));
+        loaddata();
+
+    }
+
+    $("#search-btn").click(function () {
+        loaddata();
+    });
+
+
+    function loaddata() {
+        $("#table-container").load(/*[[@{/admin/blogs/search}]]*/"/admin/blogs/search",{
+            title : $("[name='title']").val(),
+            typeId : $("[name='typeId']").val(),
+            recommend : $("[name='recommend']").prop('checked'),
+            page : $("[name='page']").val()
+        });
+    }
 
 </script>
 </body>

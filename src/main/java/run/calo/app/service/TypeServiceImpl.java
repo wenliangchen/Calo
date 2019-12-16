@@ -37,16 +37,18 @@ public class TypeServiceImpl implements TypeService {
         return typeRepository.findAll(pageable);
     }
 
+    @Transactional
     @Override
     public List<Type> listType() {
-        return null;
+        return typeRepository.findAll();
     }
 
+    @Transactional
     @Override
     public List<Type> listTypeTop(Integer size) {
         return null;
     }
-
+    @Transactional
     @Override
     public Type getTypeByName(String name) {
         return typeRepository.findByName(name);

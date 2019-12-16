@@ -4,6 +4,7 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Entity
 @Table(name="t_blog")
@@ -14,19 +15,22 @@ public class Blog {
     private Long id;
 
     private String title;
+
+    @Basic(fetch = FetchType.LAZY)
+    @Lob
     private String content;
     private String firstPicture;
     private String flag;
     private Integer views;
     private boolean appreciation;
     private boolean shareStatement;
-    private boolean commentTable;
+    private boolean commentable;
     private boolean published;
     private boolean recommend;
     @Temporal(TemporalType.TIMESTAMP)
-    private Date createdTime;
+    private Date createTime;
     @Temporal(TemporalType.TIMESTAMP)
-    private Date updatedTime;
+    private Date updateTime;
 
     @ManyToOne
     private Type type;
@@ -36,6 +40,14 @@ public class Blog {
     private User user;
     @OneToMany(mappedBy = "blog")
     private List<Comment> comments = new ArrayList<>();
+
+    @Transient
+    private String tagIds;
+
+    @Transient
+    private Long typeIds;
+
+
 
     public Blog() {
 
@@ -105,12 +117,12 @@ public class Blog {
         this.shareStatement = shareStatement;
     }
 
-    public boolean isCommentTable() {
-        return commentTable;
+    public boolean isCommentable() {
+        return commentable;
     }
 
-    public void setCommentTable(boolean commentTable) {
-        this.commentTable = commentTable;
+    public void setCommentable(boolean commentable) {
+        this.commentable = commentable;
     }
 
     public boolean isPublished() {
@@ -129,20 +141,20 @@ public class Blog {
         this.recommend = recommend;
     }
 
-    public Date getCreatedTime() {
-        return createdTime;
+    public Date getCreateTime() {
+        return createTime;
     }
 
-    public void setCreatedTime(Date createdTime) {
-        this.createdTime = createdTime;
+    public void setCreateTime(Date createdTime) {
+        this.createTime = createTime;
     }
 
-    public Date getUpdatedTime() {
-        return updatedTime;
+    public Date getUpdateTime() {
+        return updateTime;
     }
 
-    public void setUpdatedTime(Date updatedTime) {
-        this.updatedTime = updatedTime;
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
     }
 
     public Type getType() {
@@ -152,7 +164,9 @@ public class Blog {
     public void setType(Type type) {
         this.type = type;
     }
-
+    public void setType(Optional<Type> type) {
+        this.type = type.get();
+    }
     public List<Tag> getTags() {
         return tags;
     }
@@ -160,6 +174,8 @@ public class Blog {
     public void setTags(List<Tag> tags) {
         this.tags = tags;
     }
+
+
 
     public User getUser() {
         return user;
@@ -177,6 +193,24 @@ public class Blog {
         this.comments = comments;
     }
 
+    public String getTagIds() {
+        return tagIds;
+    }
+
+    public void setTagIds(String tagIds) {
+        this.tagIds = tagIds;
+    }
+
+    public Long getTypeIds() {
+        return typeIds;
+    }
+
+    public void setTypeIds(Long typeIds) {
+        this.typeIds = typeIds;
+    }
+
+
+
     @Override
     public String toString() {
         return "Blog{" +
@@ -188,13 +222,14 @@ public class Blog {
                 ", views=" + views +
                 ", appreciation=" + appreciation +
                 ", shareStatement=" + shareStatement +
-                ", commentTable=" + commentTable +
+                ", commentable=" + commentable +
                 ", published=" + published +
                 ", recommend=" + recommend +
-                ", createTime=" + createdTime +
-                ", updateTime=" + updatedTime +
+                ", createTime=" + createTime +
+                ", updateTime=" + updateTime +
                 '}';
     }
+
 
 
 }
