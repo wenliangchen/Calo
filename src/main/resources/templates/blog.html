@@ -126,84 +126,90 @@
             </div>
         </div>
 
-        <div id="comment-container" class="ui bottom attached segment">
+        <div  class="ui bottom attached segment">
             <!--Comment-->
-            <div class="ui blue segment">
-                <div class="ui threaded comments">
-                    <h3 class="ui dividing header">Comments</h3>
-                    <div class="comment">
-                        <a class="avatar">
-                            <img src="https://picsum.photos/id/1010/100/100">
-                        </a>
-                        <div class="content">
-                            <a class="author">Matt</a>
-                            <div class="metadata">
-                                <span class="date">Today at 5:42PM</span>
-                            </div>
-                            <div class="text">
-                                How artistic!
-                            </div>
-                            <div class="actions">
-                                <a class="reply">Reply</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="comment">
-                        <a class="avatar">
-                            <img src="https://picsum.photos/id/1010/100/100">
-                        </a>
-                        <div class="content">
-                            <a class="author">Elliot Fu</a>
-                            <div class="metadata">
-                                <span class="date">Yesterday at 12:30AM</span>
-                            </div>
-                            <div class="text">
-                                <p>This has been very useful for my research. Thanks as well!</p>
-                            </div>
-                            <div class="actions">
-                                <a class="reply">Reply</a>
+            <div id="comment-container" class="ui blue segment">
+                <div th:fragment="commentList">
+                    <div class="ui threaded comments" style="max-width: 100%;">
+                        <h3 class="ui dividing header">Comments</h3>
+                        <div class="comment">
+                            <a class="avatar">
+                                <img src="https://picsum.photos/id/1010/100/100">
+                            </a>
+                            <div class="content">
+                                <a class="author">Matt</a>
+                                <div class="metadata">
+                                    <span class="date">Today at 5:42PM</span>
+                                </div>
+                                <div class="text">
+                                    How artistic!
+                                </div>
+                                <div class="actions">
+                                    <a class="reply" data-commentid="1" data-commentnickname="Matt" onclick="reply(this)">Reply</a>
+                                </div>
                             </div>
                         </div>
-                        <div class="comments">
-                            <div class="comment">
-                                <a class="avatar">
-                                    <img src="https://picsum.photos/id/1010/100/100">
-                                </a>
-                                <div class="content">
-                                    <a class="author">Jenny Hess</a>
-                                    <div class="metadata">
-                                        <span class="date">Just now</span>
-                                    </div>
-                                    <div class="text">
-                                        Elliot you are always so right :)
-                                    </div>
-                                    <div class="actions">
-                                        <a class="reply">Reply</a>
+                        <div class="comment">
+                            <a class="avatar">
+                                <img src="https://picsum.photos/id/1010/100/100">
+                            </a>
+                            <div class="content">
+                                <a class="author">Elliot Fu</a>
+                                <div class="metadata">
+                                    <span class="date">Yesterday at 12:30AM</span>
+                                </div>
+                                <div class="text">
+                                    <p>This has been very useful for my research. Thanks as well!</p>
+                                </div>
+                                <div class="actions">
+                                    <a class="reply">Reply</a>
+                                </div>
+                            </div>
+                            <div class="comments">
+                                <div class="comment">
+                                    <a class="avatar">
+                                        <img src="https://picsum.photos/id/1010/100/100">
+                                    </a>
+                                    <div class="content">
+                                        <a class="author">Jenny Hess</a>
+                                        <div class="metadata">
+                                            <span class="date">Just now</span>
+                                        </div>
+                                        <div class="text">
+                                            Elliot you are always so right :)
+                                        </div>
+                                        <div class="actions">
+                                            <a class="reply">Reply</a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="comment">
-                        <a class="avatar">
-                            <img src="https://picsum.photos/id/1010/100/100">
-                        </a>
-                        <div class="content">
-                            <a class="author">Joe Henderson</a>
-                            <div class="metadata">
-                                <span class="date">5 days ago</span>
-                            </div>
-                            <div class="text">
-                                Dude, this is awesome. Thanks so much
-                            </div>
-                            <div class="actions">
-                                <a class="reply">Reply</a>
+                        <div class="comment">
+                            <a class="avatar">
+                                <img src="https://picsum.photos/id/1010/100/100">
+                            </a>
+                            <div class="content">
+                                <a class="author">Joe Henderson</a>
+                                <div class="metadata">
+                                    <span class="date">5 days ago</span>
+                                </div>
+                                <div class="text">
+                                    Dude, this is awesome. Thanks so much
+                                </div>
+                                <div class="actions">
+                                    <a class="reply">Reply</a>
+                                </div>
                             </div>
                         </div>
                     </div>
+
                 </div>
             </div>
-            <div class="ui form">
+            <div id="comment-form" class="ui form">
+                <input type="hidden" name="blog.id" th:value="${blog.id}">
+                <input type="hidden" name="parentComment.id" value="-1">
+
                 <div class="field">
                     <textarea name="content" placeholder="please type the comment information"></textarea>
                 </div>
@@ -222,7 +228,7 @@
                     </div>
 
                     <div class="field m-mobile-wide m-margin-bottom-small">
-                        <button class="ui blue button m-mobile-wide">
+                        <button id="commentPost-btn" type="button" class="ui blue button m-mobile-wide">
                             <i class="icon edit"></i> Add Reply
                         </button>
                     </div>
@@ -356,6 +362,74 @@
             console.log('Scrolled to waypoint! ' +direction)
         }
     })
+
+    $('.ui.form').form({
+        fields:{
+            title :{
+                identifier: 'content',
+                rules: [{
+                    type:'empty',
+                    prompt:'Remind:Please type the Comment content'
+                }]
+            },
+            typeId :{
+                identifier: 'nickname',
+                rules: [{
+                    type:'empty',
+                    prompt:'Remind:Please type the nickname'
+                }]
+            },
+            firstPicture :{
+                identifier: 'email',
+                rules: [{
+                    type:'email',
+                    prompt:'Remind:Please type the correct email'
+                }]
+            }
+        }
+    });
+
+
+    $('#commentPost-btn').click(function () {
+      var boo =  $('.ui.form').form('validate form');
+      if(boo){
+          console.log('validate susses');
+
+      }else {
+          console.log('validate failed');
+      }
+    });
+
+
+    function postData() {
+        $("#comment-container").load(/*[[@{/comments}]]*/"",{
+            "parentComment.id" : $("[name='parentComment.id']").val(),
+            "blog.id" : $("[name='blog.id']").val(),
+            "nickname": $("[name='nickname']").val(),
+            "email"   : $("[name='email']").val(),
+            "content" : $("[name='content']").val()
+        },function (responseTxt, statusTxt, xhr) {
+            clearContent();
+        });
+    }
+    
+    function clearContent() {
+        $(window).scrollTo($('#comment-container'),500);
+
+        $("[name='blog.id']").val('');
+        $("[name='parentComment.id']").val(-1);
+        $("[name='content']").attr("placeholder","Please type the Comment content");
+
+    }
+
+    function reply(obj) {
+        var commentId=$(obj).data('commentid');
+        var commentNickname=$(obj).data('commentnickname');
+        $("[name='content']").attr("placeholder","@"+commentNickname).focus();
+        $("[name='parentComment.id']").val(commentId);
+        $(window).scrollTo($('#comment-form'),500);
+
+    }
 </script>
 </body>
 </html>
