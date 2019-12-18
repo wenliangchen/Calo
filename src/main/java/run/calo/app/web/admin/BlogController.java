@@ -19,6 +19,7 @@ import run.calo.app.service.TypeService;
 import run.calo.app.vo.BlogQuery;
 
 import javax.servlet.http.HttpSession;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/admin")
@@ -55,9 +56,25 @@ public class BlogController {
     @GetMapping("/blogs/input")
     public String input(Model model){
 
+        setTypeAndTag(model);
+        model.addAttribute("blog",new Blog());
+        return "/admin/edit";
+    }
+
+    private void setTypeAndTag(Model model){
         model.addAttribute("types",typeService.listType());
         model.addAttribute("tags",tagService.listTag());
-        model.addAttribute("blog",new Blog());
+    }
+
+    @GetMapping("/blogs/{id}/input")
+    public String editInput(@PathVariable Long id, Model model){
+
+        setTypeAndTag(model);
+        Optional<Blog> blog = blogService.getBlog(id);
+        //it is a Bug here
+        //should be blog.init();
+        blog.get();
+        model.addAttribute("blog",blog);
 
         return "/admin/edit";
     }
@@ -70,6 +87,12 @@ public class BlogController {
         blog.setType(typeService.getType(blog.getType().getId()));
         blog.setTags(tagService.listTag(blog.getTagIds()));
         Blog b = blogService.saveBlog(blog);
+        if (blog.getId() == null){
+            b = blogService.saveBlog(blog);
+        }else {
+            b= blogService.updateBlog(blog.getId(),blog);
+        }
+
         if(b ==null) {
             attributes.addFlashAttribute("Message","fail");
         }else{
@@ -77,6 +100,13 @@ public class BlogController {
         }
 
 
+        return REDIRECT_LIST;
+    }
+
+    @GetMapping("/blogs/{id}/delete")
+    public String delete(@PathVariable Long id, RedirectAttributes attributes){
+        blogService.deleteBlog(id);
+        attributes.addFlashAttribute("message","deleted!");
         return REDIRECT_LIST;
     }
 }

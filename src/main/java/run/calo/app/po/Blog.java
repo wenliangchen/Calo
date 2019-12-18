@@ -44,6 +44,7 @@ public class Blog {
     @Transient
     private String tagIds;
 
+    private String description;
     @Transient
     private Long typeIds;
 
@@ -209,6 +210,35 @@ public class Blog {
         this.typeIds = typeIds;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void init(){
+        this.tagIds = tagsToIds(this.getTags());
+    }
+
+    private String tagsToIds(List<Tag> tags){
+        if(!tags.isEmpty()){
+            StringBuilder ids = new StringBuilder();
+            boolean flag = false;
+            for (Tag tag : tags) {
+                if (flag) {
+                    ids.append(",");
+                } else {
+                    flag = true;
+                }
+            ids.append(tag.getId());
+            }
+            return ids.toString();
+        } else {
+            return tagIds;
+        }
+    }
 
 
     @Override
@@ -227,9 +257,13 @@ public class Blog {
                 ", recommend=" + recommend +
                 ", createTime=" + createTime +
                 ", updateTime=" + updateTime +
+                ", type=" + type +
+                ", tags=" + tags +
+                ", user=" + user +
+                ", comments=" + comments +
+                ", tagIds='" + tagIds + '\'' +
+                ", description='" + description + '\'' +
+                ", typeIds=" + typeIds +
                 '}';
     }
-
-
-
 }

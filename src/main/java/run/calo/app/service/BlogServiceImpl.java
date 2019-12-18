@@ -1,5 +1,7 @@
 package run.calo.app.service;
 
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import run.calo.app.NotFoundException;
 import run.calo.app.dao.BlogRepository;
 import run.calo.app.po.Blog;
@@ -17,9 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.criteria.*;
 import java.util.*;
 
-/**
- * Created by limi on 2017/10/20.
- */
+
 @Service
 public class BlogServiceImpl implements BlogService {
 
@@ -76,12 +76,24 @@ public class BlogServiceImpl implements BlogService {
         return blogRepository.findByQuery(query,pageable);
     }
 
+    @Override
+    public List<Blog> listRecommendBlogTop(Integer size) {
+        Sort sort = new Sort(Sort.Direction.DESC,"updateTime");
+        Pageable pageable = new PageRequest (0,size,sort);
+        return blogRepository.findTop(pageable);
+    }
+
     @Transactional
     @Override
     public Blog saveBlog(Blog blog) {
-        blog.setCreateTime(new Date());
-        blog.setUpdateTime(new Date());
-        blog.setViews(0);
+        if (blog.getId() == null){
+            blog.setCreateTime(new Date());
+            blog.setUpdateTime(new Date());
+            blog.setViews(0);
+        }else{
+            blog.setUpdateTime(new Date());
+        }
+
         return blogRepository.save(blog);
     }
 

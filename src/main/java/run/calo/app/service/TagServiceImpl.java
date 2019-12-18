@@ -3,7 +3,9 @@ package run.calo.app.service;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import run.calo.app.NotFoundException;
 import run.calo.app.dao.TagRepository;
@@ -65,7 +67,7 @@ public class TagServiceImpl implements TagService{
 
     private  List<Long> convertToList(String ids){
         List<Long> list = new ArrayList<>();
-        if("".equals(ids) && ids != null){
+        if(!"".equals(ids) && ids != null){
             String[] idarray = ids.split(",");
             for (int i =0; i < idarray.length;i++){
                 list.add(new Long(idarray[i]));
@@ -77,7 +79,9 @@ public class TagServiceImpl implements TagService{
     @Transactional
     @Override
     public List<Tag> listTagTop(Integer size) {
-        return null;
+        Sort sort = new Sort(Sort.Direction.DESC,"blogs.size");
+        Pageable pageable = new PageRequest(0,size,sort);
+        return tagRepository.findTop(pageable);
     }
 
     @Transactional

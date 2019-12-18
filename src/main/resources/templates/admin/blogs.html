@@ -58,16 +58,19 @@
                     <input type="text" name="title" placeholder="title">
                 </div>
                 <div class="field">
-                    <div class="ui selection dropdown">
-                        <input type="hidden" name="typeId">
-                        <i class="dropdown icon"></i>
-                        <div class="default text">cataglous</div>
-                        <div class="menu">
-                            <div th:each="type:${types}" class="item" data-value="1" th:data-value="${type.id}" th:text="${type.name}">menal</div>
-                            <!--/*-->
-                            <div class="item" data-value="2">test</div>
-                            <!--*/-->
+                    <div class="ui labeled action input">
+                        <div class="ui type selection dropdown">
+                            <input type="hidden" name="typeId">
+                            <i class="dropdown icon"></i>
+                            <div class="default text">cataglous</div>
+                            <div class="menu">
+                                <div th:each="type:${types}" class="item" data-value="1" th:data-value="${type.id}" th:text="${type.name}">menal</div>
+                                <!--/*-->
+                                <div class="item" data-value="2">test</div>
+                                <!--*/-->
+                            </div>
                         </div>
+                        <button id="clear-btn" class="ui compact button">Clear</button>
                     </div>
                 </div>
                 <div class="field">
@@ -87,10 +90,11 @@
             <tr>
                 <th></th>
                 <th>Title</th>
-                <th>cataloug</th>
+                <th>catalogue</th>
                 <th>recommend</th>
-                <th>time</th>
-                <th>opration</th>
+                <th>Status</th>
+                <th>operation</th>
+                <th></th>
             </tr>
             </thead>
             <tbody>
@@ -99,6 +103,7 @@
                 <td th:text="${blog.title}">test</td>
                 <td th:text="${blog.type.name}">test</td>
                 <td th:text="${blog.recommend} ? 'True':'False' ">yes</td>
+                <td th:text="${blog.published} ? 'Pushed':'Draft' ">Draft</td>
                 <td th:text="${blog.updateTime}">time</td>
                 <td>
                     <a href="#" th:href="@{/admin/blogs/{id}/input(id=${blog.id})}" class="ui mini blue basic button">Edit</a>
@@ -108,7 +113,7 @@
             </tbody>
             <tfoot>
             <tr>
-                <th colspan="6">
+                <th colspan="8">
                     <div class="ui mini pagination menu" th:if="${page.totalPages}>1">
                         <a onclick="page(this)" th:attr="data-page=${page.number}-1" class="ui mini item" th:unless="${page.first}">Prev</a>
                         <a onclick="page(this)" th:attr="data-page=${page.number}+1" class="ui mini item" th:unless="${page.last}">Next</a>
@@ -120,6 +125,7 @@
             </tr>
             </tfoot>
         </table>
+                <!--//Found Bug here-->
                 <div class="ui success message" th:unless="${#strings.isEmpty(message)}">
                     <i class="close icon"></i>
                     <div class="header">Remind:</div>
@@ -181,11 +187,17 @@
     });
 
     //bug here
-    $('.message.close').on('click',function () {
+    $('.message .close').on('click',function () {
         $(this).closest('.message')
             .transition('fade');
 
     });
+
+    $('#clear-btn')
+        .on('click',function () {
+            $(' .ui.type.dropdown')
+                .dropdown('clear');
+        });
 
     function page(obj) {
         $("[name='page']").val($(obj).data("page"));
@@ -194,6 +206,7 @@
     }
 
     $("#search-btn").click(function () {
+        $("[name='page']").val(0);
         loaddata();
     });
 

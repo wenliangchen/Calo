@@ -53,12 +53,12 @@
 <div class="m-container m-padded-tb-big">
     <div class="ui container">
         <form id="blog-form" action="#" th:object="${blog}" th:action="@{/admin/blogs}" method="post" class="ui form">
-            <input type="hidden" name="published" th:value="*{published}">
-            <input type="hidden" name="id" th:value="*{id}">
+            <input type="hidden" name="published" th:value="${published}">
+            <input type="hidden" name="id" th:value="${id}">
             <div class="required field">
                 <div class="ui left labeled input">
                     <div class="ui selection compact blue basic dropdown label">
-                        <input type="hidden" value="Own">
+                        <input type="hidden" value="Own" name="flag" th:value="${flag}">
                         <i class="dropdown icon"></i>
                         <div class="text">Own</div>
                         <div class="menu">
@@ -67,12 +67,12 @@
                             <div class="item" data-value="Own">Own</div>
                         </div>
                     </div>
-                    <input type="text" name="title" placeholder="title" th:value="*{title}">
+                    <input type="text" name="title" placeholder="title" th:value="${title}">
                 </div>
             </div>
             <div class="required field">
                 <div id="md-content" style="z-index: 1!important;">
-                <textarea placeholder="Blog content" style="display: none" name="content" th:text="*{content}"></textarea>
+                <textarea placeholder="Blog content" style="display: none" name="content" th:text="${content}"></textarea>
                 </div>
             </div>
 
@@ -81,7 +81,7 @@
                     <div class="ui left labeled action input">
                         <label class="ui  compact blue basic label">Catalogue</label>
                         <div class="ui fluid selection dropdown">
-                            <input type="hidden" name="type.id" th:value="*{type}!=null ? *{type.id}">
+                            <input type="hidden" name="type.id" th:value="${type}!=null ? ${type.id}">
                             <i class="dropdown icon"></i>
                             <div class="default text">Catalogue</div>
                             <div class="menu">
@@ -107,9 +107,14 @@
             <div class="required field">
                 <div class="ui left labeled input">
                     <label class="ui blue basic label">Picture</label>
-                    <input type="text" name="firstPicture" th:value="*{firstPicture}" placeholder="imageForIndex">
+                    <input type="text" name="firstPicture" th:value="${firstPicture}" placeholder="imageForIndex">
                 </div>
             </div>
+
+            <div class="required field">
+                <textarea name="description" th:text="${description}" placeholder="Blog Brief Description" maxlength="200"></textarea>
+            </div>
+
             <div class="inline fields">
                 <div class="field">
                     <div class="ui checkbox">
@@ -197,7 +202,7 @@
             width   : "100%",
             height  : 640,
             syncScrolling : "single",
-            // path    : "../../static/lib/editormd/lib/"
+            // path    : "../../static/lib/editormd/lib/" it designed for static template
             path : "/lib/editormd/lib/"
         });
     });
@@ -248,6 +253,13 @@
                 rules: [{
                     type:'empty',
                     prompt:'Title:Please type the firstPicture url'
+                }]
+            },
+            description :{
+                identifier: 'description',
+                rules: [{
+                    type:'empty',
+                    prompt:'Title:Please type the blog description'
                 }]
             }
         }

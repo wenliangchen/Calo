@@ -45,343 +45,345 @@
                                 <h3 class="ui teal header">Blog</h3>
                             </div>
                             <div class="right aligned column">
-                                About <h3 class="ui red header m-inline-block m-front-thin">12</h3> Blog
+                                About <h3 class="ui red header m-inline-block m-front-thin" th:text="${page.totalElements}">12</h3> Blog
                             </div>
                         </div>
                     </div>
                     <!--content-->
                     <div class="ui attached  segment">
-                        <div class="ui padded vertical segment m-padded-tb-large">
-                            <div class="ui mobile reversed stackable grid">
+                        <div class="ui padded vertical segment m-padded-tb-large" th:each="blog : ${page.content}">
+                            <div class="ui middle aligned mobile reversed stackable grid">
                                 <div class="ui eleven wide column">
-                                    <h3 class="ui header">Are u know me?</h3>
-                                    <p class="m-front">do you know me?????</p>
+                                    <h3 class="ui header"><a href="#" th:href="@{/blog/{id}(id=${blog.id})" class="m-black"  target="_blank" th:text="${blog.title}"> Are u know me?</a></h3>
+                                    <p class="m-front" th:text="|${blog.description}">do you know me?????</p>
                                     <div class="ui grid">
                                         <div class="eleven wide column">
                                             <div class="ui mini horizontal link list">
                                                 <div class="item">
-                                                    <img src="https://picsum.photos/id/1010/100/100" alt="" class="ui avatar image">
-                                                    <div class="content"><a href="#" class="header">Jokephp</a> </div>
+                                                    <img src="https://picsum.photos/id/1010/100/100" th:src="@{${blog.user.avatar}" alt="" class="ui avatar image">
+                                                    <div class="content"><a href="#" class="header" th:text="${blog.user.nickname}">Jokephp</a> </div>
                                                 </div>
                                                 <div class="item">
-                                                    <i class="calendar icon"></i> 2019-12-09
+                                                    <i class="calendar icon"></i> <span th:text="${#dates.format(blog.updateTime,'yyyy-MM-dd)}">2019-12-09</span>
                                                 </div>
                                                 <div class="item">
-                                                    <i class="eye icon"></i> 222
+                                                    <i class="eye icon"></i> <span th:text="${blog.views}"> 222</span>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="right aligned five wide column">
-                                            <a href="index.html" target="_blank" class="ui blue basic label m-padded-tiny m-front-thin">Get Know!</a>
+                                            <a href="index.html" target="_blank" class="ui blue basic label m-padded-tiny m-front-thin" th:text="$blog.type.name">Get Know!</a>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="ui five wide column">
-                                    <a href="#" target="_blank">
-                                        <img src="https://picsum.photos/id/1010/800/400" alt="" class="ui rounded image">
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="ui padded vertical segment m-padded-tb-large">
-                            <div class="ui mobile reversed stackable grid">
-                                <div class="ui eleven wide column">
-                                    <h3 class="ui header">Are u know me?</h3>
-                                    <p class="m-front">do you know me?????</p>
-                                    <div class="ui grid">
-                                        <div class="eleven wide column">
-                                            <div class="ui mini horizontal link list">
-                                                <div class="item">
-                                                    <img src="https://picsum.photos/id/1010/100/100" alt="" class="ui avatar image">
-                                                    <div class="content"><a href="#" class="header">Jokephp</a> </div>
-                                                </div>
-                                                <div class="item">
-                                                    <i class="calendar icon"></i> 2019-12-09
-                                                </div>
-                                                <div class="item">
-                                                    <i class="eye icon"></i> 222
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="right aligned five wide column">
-                                            <a href="index.html" target="_blank" class="ui blue basic label m-padded-tiny m-front-thin">Get Know!</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="ui five wide column">
-                                    <a href="#" target="_blank">
-                                        <img src="https://picsum.photos/id/1010/800/400" alt="" class="ui rounded image">
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="ui padded vertical segment m-padded-tb-large">
-                            <div class="ui mobile reversed stackable grid">
-                                <div class="ui eleven wide column">
-                                    <h3 class="ui header">Are u know me?</h3>
-                                    <p class="m-front">do you know me?????</p>
-                                    <div class="ui grid">
-                                        <div class="eleven wide column">
-                                            <div class="ui mini horizontal link list">
-                                                <div class="item">
-                                                    <img src="https://picsum.photos/id/1010/100/100" alt="" class="ui avatar image">
-                                                    <div class="content"><a href="#" class="header">Jokephp</a> </div>
-                                                </div>
-                                                <div class="item">
-                                                    <i class="calendar icon"></i> 2019-12-09
-                                                </div>
-                                                <div class="item">
-                                                    <i class="eye icon"></i> 222
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="right aligned five wide column">
-                                            <a href="index.html" target="_blank" class="ui blue basic label m-padded-tiny m-front-thin">Get Know!</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="ui five wide column">
-                                    <a href="#" target="_blank">
-                                        <img src="https://picsum.photos/id/1010/800/400" alt="" class="ui rounded image">
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="ui padded vertical segment m-padded-tb-large">
-                            <div class="ui mobile reversed stackable grid">
-                                <div class="ui eleven wide column">
-                                    <h3 class="ui header">Are u know me?</h3>
-                                    <p class="m-front">do you know me?????</p>
-                                    <div class="ui grid">
-                                        <div class="eleven wide column">
-                                            <div class="ui mini horizontal link list">
-                                                <div class="item">
-                                                    <img src="https://picsum.photos/id/1010/100/100" alt="" class="ui avatar image">
-                                                    <div class="content"><a href="#" class="header">Jokephp</a> </div>
-                                                </div>
-                                                <div class="item">
-                                                    <i class="calendar icon"></i> 2019-12-09
-                                                </div>
-                                                <div class="item">
-                                                    <i class="eye icon"></i> 222
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="right aligned five wide column">
-                                            <a href="index.html" target="_blank" class="ui blue basic label m-padded-tiny m-front-thin">Get Know!</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="ui five wide column">
-                                    <a href="#" target="_blank">
-                                        <img src="https://picsum.photos/id/1010/800/400" alt="" class="ui rounded image">
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="ui padded vertical segment m-padded-tb-large">
-                            <div class="ui mobile reversed stackable grid">
-                                <div class="ui eleven wide column">
-                                    <h3 class="ui header">Are u know me?</h3>
-                                    <p class="m-front">do you know me?????</p>
-                                    <div class="ui grid">
-                                        <div class="eleven wide column">
-                                            <div class="ui mini horizontal link list">
-                                                <div class="item">
-                                                    <img src="https://picsum.photos/id/1010/100/100" alt="" class="ui avatar image">
-                                                    <div class="content"><a href="#" class="header">Jokephp</a> </div>
-                                                </div>
-                                                <div class="item">
-                                                    <i class="calendar icon"></i> 2019-12-09
-                                                </div>
-                                                <div class="item">
-                                                    <i class="eye icon"></i> 222
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="right aligned five wide column">
-                                            <a href="index.html" target="_blank" class="ui blue basic label m-padded-tiny m-front-thin">Get Know!</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="ui five wide column">
-                                    <a href="#" target="_blank">
-                                        <img src="https://picsum.photos/id/1010/800/400" alt="" class="ui rounded image">
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="ui padded vertical segment m-padded-tb-large">
-                            <div class="ui mobile reversed stackable grid">
-                                <div class="ui eleven wide column">
-                                    <h3 class="ui header">Are u know me?</h3>
-                                    <p class="m-front">do you know me?????</p>
-                                    <div class="ui grid">
-                                        <div class="eleven wide column">
-                                            <div class="ui mini horizontal link list">
-                                                <div class="item">
-                                                    <img src="https://picsum.photos/id/1010/100/100" alt="" class="ui avatar image">
-                                                    <div class="content"><a href="#" class="header">Jokephp</a> </div>
-                                                </div>
-                                                <div class="item">
-                                                    <i class="calendar icon"></i> 2019-12-09
-                                                </div>
-                                                <div class="item">
-                                                    <i class="eye icon"></i> 222
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="right aligned five wide column">
-                                            <a href="index.html" target="_blank" class="ui blue basic label m-padded-tiny m-front-thin">Get Know!</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="ui five wide column">
-                                    <a href="#" target="_blank">
-                                        <img src="https://picsum.photos/id/1010/800/400" alt="" class="ui rounded image">
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="ui padded vertical segment m-padded-tb-large">
-                            <div class="ui mobile reversed stackable grid">
-                                <div class="ui eleven wide column">
-                                    <h3 class="ui header">Are u know me?</h3>
-                                    <p class="m-front">do you know me?????</p>
-                                    <div class="ui grid">
-                                        <div class="eleven wide column">
-                                            <div class="ui mini horizontal link list">
-                                                <div class="item">
-                                                    <img src="https://picsum.photos/id/1010/100/100" alt="" class="ui avatar image">
-                                                    <div class="content"><a href="#" class="header">Jokephp</a> </div>
-                                                </div>
-                                                <div class="item">
-                                                    <i class="calendar icon"></i> 2019-12-09
-                                                </div>
-                                                <div class="item">
-                                                    <i class="eye icon"></i> 222
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="right aligned five wide column">
-                                            <a href="index.html" target="_blank" class="ui blue basic label m-padded-tiny m-front-thin">Get Know!</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="ui five wide column">
-                                    <a href="#" target="_blank">
-                                        <img src="https://picsum.photos/id/1010/800/400" alt="" class="ui rounded image">
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="ui padded vertical segment m-padded-tb-large">
-                            <div class="ui mobile reversed stackable grid">
-                                <div class="ui eleven wide column">
-                                    <h3 class="ui header">Are u know me?</h3>
-                                    <p class="m-front">do you know me?????</p>
-                                    <div class="ui grid">
-                                        <div class="eleven wide column">
-                                            <div class="ui mini horizontal link list">
-                                                <div class="item">
-                                                    <img src="https://picsum.photos/id/1010/100/100" alt="" class="ui avatar image">
-                                                    <div class="content"><a href="#" class="header">Jokephp</a> </div>
-                                                </div>
-                                                <div class="item">
-                                                    <i class="calendar icon"></i> 2019-12-09
-                                                </div>
-                                                <div class="item">
-                                                    <i class="eye icon"></i> 222
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="right aligned five wide column">
-                                            <a href="index.html" target="_blank" class="ui blue basic label m-padded-tiny m-front-thin">Get Know!</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="ui five wide column">
-                                    <a href="#" target="_blank">
-                                        <img src="https://picsum.photos/id/1010/800/400" alt="" class="ui rounded image">
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="ui padded vertical segment m-padded-tb-large">
-                            <div class="ui mobile reversed stackable grid">
-                                <div class="ui eleven wide column">
-                                    <h3 class="ui header">Are u know me?</h3>
-                                    <p class="m-front">do you know me?????</p>
-                                    <div class="ui grid">
-                                        <div class="eleven wide column">
-                                            <div class="ui mini horizontal link list">
-                                                <div class="item">
-                                                    <img src="https://picsum.photos/id/1010/100/100" alt="" class="ui avatar image">
-                                                    <div class="content"><a href="#" class="header">Jokephp</a> </div>
-                                                </div>
-                                                <div class="item">
-                                                    <i class="calendar icon"></i> 2019-12-09
-                                                </div>
-                                                <div class="item">
-                                                    <i class="eye icon"></i> 222
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="right aligned five wide column">
-                                            <a href="index.html" target="_blank" class="ui blue basic label m-padded-tiny m-front-thin">Get Know!</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="ui five wide column">
-                                    <a href="#" target="_blank">
-                                        <img src="https://picsum.photos/id/1010/800/400" alt="" class="ui rounded image">
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="ui padded vertical segment m-padded-tb-large">
-                            <div class="ui mobile reversed stackable grid">
-                                <div class="ui eleven wide column">
-                                    <h3 class="ui header">Are u know me?</h3>
-                                    <p class="m-front">do you know me?????</p>
-                                    <div class="ui grid">
-                                        <div class="eleven wide column">
-                                            <div class="ui mini horizontal link list">
-                                                <div class="item">
-                                                    <img src="https://picsum.photos/id/1010/100/100" alt="" class="ui avatar image">
-                                                    <div class="content"><a href="#" class="header">Jokephp</a> </div>
-                                                </div>
-                                                <div class="item">
-                                                    <i class="calendar icon"></i> 2019-12-09
-                                                </div>
-                                                <div class="item">
-                                                    <i class="eye icon"></i> 222
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="right aligned five wide column">
-                                            <a href="index.html" target="_blank" class="ui blue basic label m-padded-tiny m-front-thin">Get Know!</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="ui five wide column">
-                                    <a href="#" target="_blank">
-                                        <img src="https://picsum.photos/id/1010/800/400" alt="" class="ui rounded image">
+                                    <a href="#" th:href="@{/blog/{id}{id=${blog.id}}" target="_blank">
+                                        <img src="https://picsum.photos/id/1010/800/400"  th:src="@{${blog.fristPicture}}" alt="" class="ui rounded image">
                                     </a>
                                 </div>
                             </div>
                         </div>
 
+                        <!--/*-->
+                        <div class="ui padded vertical segment m-padded-tb-large">
+                            <div class="ui mobile reversed stackable grid">
+                                <div class="ui eleven wide column">
+                                    <h3 class="ui header">Are u know me?</h3>
+                                    <p class="m-front">do you know me?????</p>
+                                    <div class="ui grid">
+                                        <div class="eleven wide column">
+                                            <div class="ui mini horizontal link list">
+                                                <div class="item">
+                                                    <img src="https://picsum.photos/id/1010/100/100" alt="" class="ui avatar image">
+                                                    <div class="content"><a href="#" class="header">Jokephp</a> </div>
+                                                </div>
+                                                <div class="item">
+                                                    <i class="calendar icon"></i> 2019-12-09
+                                                </div>
+                                                <div class="item">
+                                                    <i class="eye icon"></i> 222
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="right aligned five wide column">
+                                            <a href="index.html" target="_blank" class="ui blue basic label m-padded-tiny m-front-thin">Get Know!</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="ui five wide column">
+                                    <a href="#" target="_blank">
+                                        <img src="https://picsum.photos/id/1010/800/400" alt="" class="ui rounded image">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ui padded vertical segment m-padded-tb-large">
+                            <div class="ui mobile reversed stackable grid">
+                                <div class="ui eleven wide column">
+                                    <h3 class="ui header">Are u know me?</h3>
+                                    <p class="m-front">do you know me?????</p>
+                                    <div class="ui grid">
+                                        <div class="eleven wide column">
+                                            <div class="ui mini horizontal link list">
+                                                <div class="item">
+                                                    <img src="https://picsum.photos/id/1010/100/100" alt="" class="ui avatar image">
+                                                    <div class="content"><a href="#" class="header">Jokephp</a> </div>
+                                                </div>
+                                                <div class="item">
+                                                    <i class="calendar icon"></i> 2019-12-09
+                                                </div>
+                                                <div class="item">
+                                                    <i class="eye icon"></i> 222
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="right aligned five wide column">
+                                            <a href="index.html" target="_blank" class="ui blue basic label m-padded-tiny m-front-thin">Get Know!</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="ui five wide column">
+                                    <a href="#" target="_blank">
+                                        <img src="https://picsum.photos/id/1010/800/400" alt="" class="ui rounded image">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ui padded vertical segment m-padded-tb-large">
+                            <div class="ui mobile reversed stackable grid">
+                                <div class="ui eleven wide column">
+                                    <h3 class="ui header">Are u know me?</h3>
+                                    <p class="m-front">do you know me?????</p>
+                                    <div class="ui grid">
+                                        <div class="eleven wide column">
+                                            <div class="ui mini horizontal link list">
+                                                <div class="item">
+                                                    <img src="https://picsum.photos/id/1010/100/100" alt="" class="ui avatar image">
+                                                    <div class="content"><a href="#" class="header">Jokephp</a> </div>
+                                                </div>
+                                                <div class="item">
+                                                    <i class="calendar icon"></i> 2019-12-09
+                                                </div>
+                                                <div class="item">
+                                                    <i class="eye icon"></i> 222
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="right aligned five wide column">
+                                            <a href="index.html" target="_blank" class="ui blue basic label m-padded-tiny m-front-thin">Get Know!</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="ui five wide column">
+                                    <a href="#" target="_blank">
+                                        <img src="https://picsum.photos/id/1010/800/400" alt="" class="ui rounded image">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ui padded vertical segment m-padded-tb-large">
+                            <div class="ui mobile reversed stackable grid">
+                                <div class="ui eleven wide column">
+                                    <h3 class="ui header">Are u know me?</h3>
+                                    <p class="m-front">do you know me?????</p>
+                                    <div class="ui grid">
+                                        <div class="eleven wide column">
+                                            <div class="ui mini horizontal link list">
+                                                <div class="item">
+                                                    <img src="https://picsum.photos/id/1010/100/100" alt="" class="ui avatar image">
+                                                    <div class="content"><a href="#" class="header">Jokephp</a> </div>
+                                                </div>
+                                                <div class="item">
+                                                    <i class="calendar icon"></i> 2019-12-09
+                                                </div>
+                                                <div class="item">
+                                                    <i class="eye icon"></i> 222
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="right aligned five wide column">
+                                            <a href="index.html" target="_blank" class="ui blue basic label m-padded-tiny m-front-thin">Get Know!</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="ui five wide column">
+                                    <a href="#" target="_blank">
+                                        <img src="https://picsum.photos/id/1010/800/400" alt="" class="ui rounded image">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ui padded vertical segment m-padded-tb-large">
+                            <div class="ui mobile reversed stackable grid">
+                                <div class="ui eleven wide column">
+                                    <h3 class="ui header">Are u know me?</h3>
+                                    <p class="m-front">do you know me?????</p>
+                                    <div class="ui grid">
+                                        <div class="eleven wide column">
+                                            <div class="ui mini horizontal link list">
+                                                <div class="item">
+                                                    <img src="https://picsum.photos/id/1010/100/100" alt="" class="ui avatar image">
+                                                    <div class="content"><a href="#" class="header">Jokephp</a> </div>
+                                                </div>
+                                                <div class="item">
+                                                    <i class="calendar icon"></i> 2019-12-09
+                                                </div>
+                                                <div class="item">
+                                                    <i class="eye icon"></i> 222
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="right aligned five wide column">
+                                            <a href="index.html" target="_blank" class="ui blue basic label m-padded-tiny m-front-thin">Get Know!</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="ui five wide column">
+                                    <a href="#" target="_blank">
+                                        <img src="https://picsum.photos/id/1010/800/400" alt="" class="ui rounded image">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ui padded vertical segment m-padded-tb-large">
+                            <div class="ui mobile reversed stackable grid">
+                                <div class="ui eleven wide column">
+                                    <h3 class="ui header">Are u know me?</h3>
+                                    <p class="m-front">do you know me?????</p>
+                                    <div class="ui grid">
+                                        <div class="eleven wide column">
+                                            <div class="ui mini horizontal link list">
+                                                <div class="item">
+                                                    <img src="https://picsum.photos/id/1010/100/100" alt="" class="ui avatar image">
+                                                    <div class="content"><a href="#" class="header">Jokephp</a> </div>
+                                                </div>
+                                                <div class="item">
+                                                    <i class="calendar icon"></i> 2019-12-09
+                                                </div>
+                                                <div class="item">
+                                                    <i class="eye icon"></i> 222
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="right aligned five wide column">
+                                            <a href="index.html" target="_blank" class="ui blue basic label m-padded-tiny m-front-thin">Get Know!</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="ui five wide column">
+                                    <a href="#" target="_blank">
+                                        <img src="https://picsum.photos/id/1010/800/400" alt="" class="ui rounded image">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ui padded vertical segment m-padded-tb-large">
+                            <div class="ui mobile reversed stackable grid">
+                                <div class="ui eleven wide column">
+                                    <h3 class="ui header">Are u know me?</h3>
+                                    <p class="m-front">do you know me?????</p>
+                                    <div class="ui grid">
+                                        <div class="eleven wide column">
+                                            <div class="ui mini horizontal link list">
+                                                <div class="item">
+                                                    <img src="https://picsum.photos/id/1010/100/100" alt="" class="ui avatar image">
+                                                    <div class="content"><a href="#" class="header">Jokephp</a> </div>
+                                                </div>
+                                                <div class="item">
+                                                    <i class="calendar icon"></i> 2019-12-09
+                                                </div>
+                                                <div class="item">
+                                                    <i class="eye icon"></i> 222
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="right aligned five wide column">
+                                            <a href="index.html" target="_blank" class="ui blue basic label m-padded-tiny m-front-thin">Get Know!</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="ui five wide column">
+                                    <a href="#" target="_blank">
+                                        <img src="https://picsum.photos/id/1010/800/400" alt="" class="ui rounded image">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ui padded vertical segment m-padded-tb-large">
+                            <div class="ui mobile reversed stackable grid">
+                                <div class="ui eleven wide column">
+                                    <h3 class="ui header">Are u know me?</h3>
+                                    <p class="m-front">do you know me?????</p>
+                                    <div class="ui grid">
+                                        <div class="eleven wide column">
+                                            <div class="ui mini horizontal link list">
+                                                <div class="item">
+                                                    <img src="https://picsum.photos/id/1010/100/100" alt="" class="ui avatar image">
+                                                    <div class="content"><a href="#" class="header">Jokephp</a> </div>
+                                                </div>
+                                                <div class="item">
+                                                    <i class="calendar icon"></i> 2019-12-09
+                                                </div>
+                                                <div class="item">
+                                                    <i class="eye icon"></i> 222
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="right aligned five wide column">
+                                            <a href="index.html" target="_blank" class="ui blue basic label m-padded-tiny m-front-thin">Get Know!</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="ui five wide column">
+                                    <a href="#" target="_blank">
+                                        <img src="https://picsum.photos/id/1010/800/400" alt="" class="ui rounded image">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ui padded vertical segment m-padded-tb-large">
+                            <div class="ui mobile reversed stackable grid">
+                                <div class="ui eleven wide column">
+                                    <h3 class="ui header">Are u know me?</h3>
+                                    <p class="m-front">do you know me?????</p>
+                                    <div class="ui grid">
+                                        <div class="eleven wide column">
+                                            <div class="ui mini horizontal link list">
+                                                <div class="item">
+                                                    <img src="https://picsum.photos/id/1010/100/100" alt="" class="ui avatar image">
+                                                    <div class="content"><a href="#" class="header">Jokephp</a> </div>
+                                                </div>
+                                                <div class="item">
+                                                    <i class="calendar icon"></i> 2019-12-09
+                                                </div>
+                                                <div class="item">
+                                                    <i class="eye icon"></i> 222
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="right aligned five wide column">
+                                            <a href="index.html" target="_blank" class="ui blue basic label m-padded-tiny m-front-thin">Get Know!</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="ui five wide column">
+                                    <a href="#" target="_blank">
+                                        <img src="https://picsum.photos/id/1010/800/400" alt="" class="ui rounded image">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <!--*/-->
 
                     </div>
                     <!--footer-->
-                    <div class="ui bottom attached segment">
+                    <div class="ui bottom attached segment" th:if="${page.totalPages}>1">
                         <div class="ui middle aligned two column grid">
                             <div class="column">
-                                <a href="#" class="ui mini blue basic button">Prev</a>
+                                <a href="#" th:href="@{/(page=${page.number}-1)}" th:unless="${page.first}" class="ui mini blue basic button">Prev</a>
                             </div>
                             <div class="right aligned column">
-                                <a href="#" class="ui mini blue basic button">Next</a>
+                                <a href="#" th:href="@{/(page=${page.number}+1)}" th:unless="${page.last}" class="ui mini blue basic button">Next</a>
                             </div>
                         </div>
                     </div>
@@ -401,6 +403,13 @@
                             </div>
                         </div>
                         <div class="ui blue segment">
+                            <div class="ui fluid vertical menu" >
+                                <a href="#" class="item" th:each="type : ${types}">
+                                    <span th:text="${type.name}">Study</span>
+                                    <div class="ui blue basic left pointing label" th:text="${#arrays.length(type.blogs)}">13</div>
+                                </a>
+                            </div>
+                            <!--/*-->
                             <div class="ui fluid vertical menu">
                                 <a href="#" class="item">
                                     Study
@@ -431,12 +440,8 @@
                                     <div class="ui blue basic left pointing label">13</div>
                                 </a>
                             </div>
-                            <div class="ui fluid vertical menu">
-                                <a href="#" class="item">
-                                    Study
-                                    <div class="ui blue basic left pointing label">13</div>
-                                </a>
-                            </div>
+                            <!--*/-->
+
                         </div>
                     </div>
                     <!--Tags -->
@@ -452,7 +457,9 @@
                             </div>
                         </div>
                         <div class="ui blue segment">
-                            <a href="#" target="_blank" class="ui blue basic left pointing label m-margin-tb-tiny">fffffffffff  <div class="detail">11</div> </a>
+                            <a href="#" target="_blank" class="ui blue basic left pointing label m-margin-tb-tiny" th:each="tag : $ {tags}"><span th:text="${tag.name}"> fffffffffff </span> <div class="detail" th:text="${#array.length(tag.blogs)}">11</div> </a>
+                            <!--/*-->
+
                             <a href="#" target="_blank" class="ui blue basic left pointing label m-margin-tb-tiny">fffffffffff  <div class="detail">11</div> </a>
                             <a href="#" target="_blank" class="ui blue basic left pointing label m-margin-tb-tiny">fffffffffff  <div class="detail">11</div> </a>
                             <a href="#" target="_blank" class="ui blue basic left pointing label m-margin-tb-tiny">fffffffffff  <div class="detail">11</div> </a>
@@ -460,7 +467,7 @@
                             <a href="#" target="_blank" class="ui blue basic left pointing label m-margin-tb-tiny">fffffffffff  <div class="detail">11</div> </a>
                             <a href="#" target="_blank" class="ui blue basic left pointing label m-margin-tb-tiny">fffffffffff  <div class="detail">11</div> </a>
 
-
+                            <!--*/-->
                         </div>
                     </div>
                     <!--new Blog-->
@@ -468,6 +475,10 @@
                         <div class="ui secondary segment ">
                             <i class="bookmark icon"></i> Recommend
                         </div>
+                        <div class="ui segment" th:each="blog : ${recommendBlogs}">
+                            <a href="#" th:href="@{/blog/{id}(id=${blog.id}" target="_blank" class="m-black m-front-thin" th:text="${blog.title}">New story</a>
+                        </div>
+                        <!--/*-->
                         <div class="ui segment">
                             <a href="#" target="_blank" class="m-black m-front-thin">New story</a>
                         </div>
@@ -480,9 +491,7 @@
                         <div class="ui segment">
                             <a href="#" target="_blank" class="m-black m-front-thin">New story</a>
                         </div>
-                        <div class="ui segment">
-                            <a href="#" target="_blank" class="m-black m-front-thin">New story</a>
-                        </div>
+                        <!--*/-->
                     </div>
                     <!--QR Code-->
                     <h4 class="ui horizontal divider header">Scan me!!!</h4>

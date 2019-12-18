@@ -5,6 +5,7 @@ import org.springframework.data.domain.Pageable;
 import run.calo.app.po.Blog;
 import run.calo.app.vo.BlogQuery;
 
+import java.util.List;
 import java.util.Optional;
 
 
@@ -18,6 +19,8 @@ public interface BlogService {
     Page<Blog> listBlog(Long tagId,Pageable pageable);
 
     Page<Blog> listBlog(String query,Pageable pageable);
+
+    List<Blog> listRecommendBlogTop(Integer size);
 
     Blog saveBlog(Blog blog);
 
