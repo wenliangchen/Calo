@@ -48,9 +48,7 @@ public class TypeServiceImpl implements TypeService {
     @Transactional
     @Override
     public List<Type> listTypeTop(Integer size) {
-        Sort sort = new Sort(Sort.Direction.DESC,"blogs.size");
-        Pageable pageable = new PageRequest(0, size,sort);
-
+        Pageable pageable =PageRequest.of(0, size, Sort.by(Sort.Direction.DESC,"blogs.size"));
         return typeRepository.findTop(pageable);
     }
     @Transactional

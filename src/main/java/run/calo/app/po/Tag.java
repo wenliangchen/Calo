@@ -17,7 +17,7 @@ public class Tag {
     private String name;
 
     @ManyToMany(mappedBy = "tags")
-    private List<Blog> Blogs = new ArrayList<>();
+    private List<Blog> blogs = new ArrayList<>();
 
     public Tag() {
     }
@@ -39,11 +39,11 @@ public class Tag {
     }
 
     public List<Blog> getBlogs() {
-        return Blogs;
+        return blogs;
     }
 
     public void setBlogs(List<Blog> blogs) {
-        Blogs = blogs;
+        blogs = blogs;
     }
 
     @Override
@@ -51,6 +51,7 @@ public class Tag {
         return "Tag{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
+                ", blogs=" + blogs +
                 '}';
     }
 }

@@ -43,33 +43,33 @@
             <!--Header-->
             <div class="ui horizontal link list">
                 <div class="item">
-                    <img src="https://picsum.photos/id/1010/100/100" alt="" class="ui avatar image">
-                    <div class="content"><a href="#" class="header">Jokephp</a> </div>
+                    <img src="https://picsum.photos/id/1010/100/100" th:src="@{${blog.user.avatar}}" alt="" class="ui avatar image">
+                    <div class="content"><a href="#" class="header" th:text="${blog.user.nickname}">Jokephp</a> </div>
                 </div>
                 <div class="item">
-                    <i class="calendar icon"></i> 2019-12-09
+                    <i class="calendar icon"></i> <span th:text="${#dates.format(blog.updateTime,'yyyy-MM-dd')}">2019-12-09</span>
                 </div>
                 <div class="item">
-                    <i class="eye icon"></i> 222
+                    <i class="eye icon"></i> <span th:text="${blog.views}"> 222</span>
                 </div>
             </div>
         </div>
 
         <div class="ui attached segment">
             <!--images-->
-            <img src="https://picsum.photos/id/1012/800/450" class="ui fluid rounded image">
+            <img src="https://picsum.photos/id/1012/800/450" th:src="@{${blog.firstPicture}}" class="ui fluid rounded image">
         </div>
 
         <div class="ui attached padded segment">
             <!--content-->
             <div class="ui right aligned basic segment">
-                <div class="ui orange basic label">Own </div>
+                <div class="ui orange basic label" th:text="${blog.flag}">Own </div>
             </div>
 
-            <h2 class="ui center aligned header">About how to Study</h2>
+            <h2 class="ui center aligned header" th:text="${blog.title}">About how to Study</h2>
             <br>
-            <div id="content"class="typo typo-selection js-toc-content m-padded-lr-responsive m-padded-tb-large">
-                <!--content-->
+            <div id="content"class="typo typo-selection js-toc-content m-padded-lr-responsive m-padded-tb-large" th:utext="${blog.content}">
+                <!--Major content-->
                 <br>
                 <pre><code class="language-css">Public static void main(String arg[]){println "Java Code";}</code> </pre>
                 <p>how to study? I do not know!</p>
@@ -81,8 +81,8 @@
 
             <!--tags-->
             <div class="m-padded-lr-responsive m-padded-lr">
-                <div class="ui basic blue left pointing label">
-                    tabs
+                <div class="ui basic blue left pointing label" th:each="tag : ${blog.tags}" th:text="${tag.name}">
+                    tags
                 </div>
             </div>
 
@@ -96,11 +96,11 @@
                 <div class="ui orange basic label">
                     <div class="ui images" style="font-size: inherit!important;">
                         <div class="image">
-                            <img src="../static/images/wechat.jpg" alt="" class="ui rounded bordered image" style="width:120px">
+                            <img src="../static/images/wechat.jpg" th:src="@{/images/wechat.jpg}" alt="" class="ui rounded bordered image" style="width:120px">
                             <div>Alipay</div>
                         </div>
                         <div class="image">
-                            <img src="../static/images/wechat.jpg" alt="" class="ui rounded bordered image" style="width:120px">
+                            <img src="../static/images/wechat.jpg" th:src="@{/images/wechat.jpg}" alt="" class="ui rounded bordered image" style="width:120px">
                             <div>Wechat</div>
                         </div>
                     </div>
@@ -113,15 +113,15 @@
             <div class="ui middle aligned grid">
                 <div class="eleven wide column">
                     <ui class="list">
-                        <li>Author:Jokephp</li>
-                        <li>Author:Jokephp</li>
-                        <li>Author:Jokephp</li>
-                        <li>Author:Jokephp</li>
+                        <li>Author:<span th:text="${blog.user.nickname}">Jokephp</span> <a href="#" th:href="@{/about}" target="_blank"> (Contact Author)</a></li>
+                        <li>PublishedTime:<span th:text="${#dates.format(blog.updateTime,'yyyy-MM-dd HH:mm')}"></span></li>
+                        <li>CopyRightLicense:GNU General Public License v3.0</li>
+                        <li>Remind: If you copy the article please add the Author name and Website Url at end of your article </li>
 
                     </ui>
                 </div>
                 <div class="five wide column">
-                    <img src="../static/images/wechat.jpg" alt="" class="ui right floated rounded borderd image" style="width: 110px">
+                    <img src="../static/images/wechat.jpg" th:src="@{/images/wechat.jpg}" alt="" class="ui right floated rounded borderd image" style="width: 110px">
                 </div>
             </div>
         </div>
@@ -299,7 +299,7 @@
 <!--/*/</th:block>/*/-->
 
 
-<script>
+<script th:inline="javascript">
     $('.menu.toggle').click(function(){
         $('.m-item').toggleClass('m-hidden-mobile');
     })
@@ -329,8 +329,12 @@
         popup:$('.wechat-qr.popup'),
         position:'left center'
     });
+
+    var serurl ="http://localhost:8080"
+    var url = /*[[@{/blog/{id}(id=${blog.id}}]]*/"";
+
     var qrcode = new QRCode("qrcode", {
-        text: "http://jindo.dev.naver.com/collie",
+        text: serurl+url,
         width: 110,
         height: 110,
         colorDark : "#000000",

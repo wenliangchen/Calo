@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 import run.calo.app.po.Blog;
 
@@ -18,6 +19,8 @@ public interface BlogRepository extends JpaRepository<Blog,Long > , JpaSpecifica
     @Query("select b from Blog b where b.title like ?1 or b.content like ?1")
     Page<Blog> findByQuery(String query, Pageable pageable);
 
+    @Query("select b from Blog b where b.id = :id")
+    Blog findOne(@Param("id") Long id);
 
     @Transactional
     @Modifying

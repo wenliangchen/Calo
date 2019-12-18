@@ -6,11 +6,12 @@ import run.calo.app.po.Blog;
 import run.calo.app.vo.BlogQuery;
 
 import java.util.List;
-import java.util.Optional;
 
 
 public interface BlogService {
-    Optional<Blog> getBlog(Long id);
+    Blog getBlog(Long id);
+
+    Blog getAndConvert(Long id);
 
     Page<Blog> listBlog(Pageable pageable,BlogQuery blog);
 

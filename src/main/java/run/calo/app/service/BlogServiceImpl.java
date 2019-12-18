@@ -6,6 +6,7 @@ import run.calo.app.NotFoundException;
 import run.calo.app.dao.BlogRepository;
 import run.calo.app.po.Blog;
 import run.calo.app.po.Type;
+import run.calo.app.util.MarkDownUtils;
 import run.calo.app.util.MyBeanUtils;
 import run.calo.app.vo.BlogQuery;
 import org.springframework.beans.BeanUtils;
@@ -28,10 +29,22 @@ public class BlogServiceImpl implements BlogService {
     private BlogRepository blogRepository;
 
     @Override
-    public Optional<Blog> getBlog(Long id) {
-        return blogRepository.findById(id);
+    public Blog getBlog(Long id) {
+        return blogRepository.findOne(id);
     }
 
+    @Override
+    public Blog getAndConvert(Long id) {
+        Blog blog= blogRepository.findOne(id);
+        if (blog == null){
+            throw new NotFoundException("Not Found");
+        }
+        Blog b = new Blog();
+        BeanUtils.copyProperties(blog,b);
+        String content = b.getContent();
+        b.setContent(MarkDownUtils.markdownToHtmlExtensions(content));
+        return b;
+    }
 
 
     @Override
@@ -78,8 +91,7 @@ public class BlogServiceImpl implements BlogService {
 
     @Override
     public List<Blog> listRecommendBlogTop(Integer size) {
-        Sort sort = new Sort(Sort.Direction.DESC,"updateTime");
-        Pageable pageable = new PageRequest (0,size,sort);
+        Pageable pageable =PageRequest.of(0, size, Sort.by(Sort.Direction.DESC,"updateTime"));
         return blogRepository.findTop(pageable);
     }
 
@@ -101,7 +113,7 @@ public class BlogServiceImpl implements BlogService {
     @Transactional
     @Override
     public Blog updateBlog(Long id, Blog blog) {
-        Optional<Blog> b = blogRepository.findById(id);
+        Blog b = blogRepository.findOne(id);
         if (b == null) {
             throw new NotFoundException("PageNotFound");
         }

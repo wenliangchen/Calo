@@ -21,7 +21,7 @@
                 <a href="index.html" class="m-item item m-hidden-mobile"><i class="info icon"></i>About</a>
                 <div class="right m-item item m-hidden-mobile">
                     <div class="ui icon inverted transparent input">
-                        <input type="text" placeholder="Search....">
+                        <input type="text" name="query" placeholder="Search...." th:value="${query}">
                         <i class="search link icon"></i>
                     </div>
                 </div>
@@ -54,17 +54,17 @@
                         <div class="ui padded vertical segment m-padded-tb-large" th:each="blog : ${page.content}">
                             <div class="ui middle aligned mobile reversed stackable grid">
                                 <div class="ui eleven wide column">
-                                    <h3 class="ui header"><a href="#" th:href="@{/blog/{id}(id=${blog.id})" class="m-black"  target="_blank" th:text="${blog.title}"> Are u know me?</a></h3>
-                                    <p class="m-front" th:text="|${blog.description}">do you know me?????</p>
+                                    <h3 class="ui header"><a href="#" th:href="@{/blog/{id}(id=${blog.id})}" class="m-black"  target="_blank" th:text="${blog.title}"> Are u know me?</a></h3>
+                                    <p class="m-front" th:text="|${blog.description}|">do you know me?????</p>
                                     <div class="ui grid">
                                         <div class="eleven wide column">
                                             <div class="ui mini horizontal link list">
                                                 <div class="item">
-                                                    <img src="https://picsum.photos/id/1010/100/100" th:src="@{${blog.user.avatar}" alt="" class="ui avatar image">
+                                                    <img src="https://picsum.photos/id/1010/100/100" th:src="@{${blog.user.avatar}}" alt=""   class="ui avatar image">
                                                     <div class="content"><a href="#" class="header" th:text="${blog.user.nickname}">Jokephp</a> </div>
                                                 </div>
                                                 <div class="item">
-                                                    <i class="calendar icon"></i> <span th:text="${#dates.format(blog.updateTime,'yyyy-MM-dd)}">2019-12-09</span>
+                                                    <i class="calendar icon"></i> <span th:text="${#dates.format(blog.updateTime,'yyyy-MM-dd')}">2019-12-09</span>
                                                 </div>
                                                 <div class="item">
                                                     <i class="eye icon"></i> <span th:text="${blog.views}"> 222</span>
@@ -72,13 +72,13 @@
                                             </div>
                                         </div>
                                         <div class="right aligned five wide column">
-                                            <a href="index.html" target="_blank" class="ui blue basic label m-padded-tiny m-front-thin" th:text="$blog.type.name">Get Know!</a>
+                                            <a href="index.html" target="_blank" class="ui blue basic label m-padded-tiny m-front-thin" th:text="${blog.type.name}">Get Know!</a>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="ui five wide column">
-                                    <a href="#" th:href="@{/blog/{id}{id=${blog.id}}" target="_blank">
-                                        <img src="https://picsum.photos/id/1010/800/400"  th:src="@{${blog.fristPicture}}" alt="" class="ui rounded image">
+                                    <a href="#" th:href="@{/blog/{id}(id=${blog.id})}" target="_blank">
+                                        <img src="https://picsum.photos/id/1010/800/400" th:src="@{${blog.firstPicture}}"  alt="" class="ui rounded image">
                                     </a>
                                 </div>
                             </div>
@@ -457,7 +457,7 @@
                             </div>
                         </div>
                         <div class="ui blue segment">
-                            <a href="#" target="_blank" class="ui blue basic left pointing label m-margin-tb-tiny" th:each="tag : $ {tags}"><span th:text="${tag.name}"> fffffffffff </span> <div class="detail" th:text="${#array.length(tag.blogs)}">11</div> </a>
+                            <a href="#" target="_blank" class="ui blue basic left pointing label m-margin-tb-tiny" th:each="tag : ${tags}"><span th:text="${tag.name}"> fffffffffff </span> <div class="detail" th:text="${#arrays.length(tag.blogs)}">11</div> </a>
                             <!--/*-->
 
                             <a href="#" target="_blank" class="ui blue basic left pointing label m-margin-tb-tiny">fffffffffff  <div class="detail">11</div> </a>
@@ -476,7 +476,7 @@
                             <i class="bookmark icon"></i> Recommend
                         </div>
                         <div class="ui segment" th:each="blog : ${recommendBlogs}">
-                            <a href="#" th:href="@{/blog/{id}(id=${blog.id}" target="_blank" class="m-black m-front-thin" th:text="${blog.title}">New story</a>
+                            <a href="#" th:href="@{/blog/{id}(id=${blog.id})}"  target="_blank" class="m-black m-front-thin" th:text="${blog.title}">New story</a>
                         </div>
                         <!--/*-->
                         <div class="ui segment">

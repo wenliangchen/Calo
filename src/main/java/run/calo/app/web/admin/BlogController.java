@@ -70,10 +70,10 @@ public class BlogController {
     public String editInput(@PathVariable Long id, Model model){
 
         setTypeAndTag(model);
-        Optional<Blog> blog = blogService.getBlog(id);
-        //it is a Bug here
-        //should be blog.init();
-        blog.get();
+        Blog blog = blogService.getBlog(id);
+        //it is a Bug here (Fixed!)
+        //should be blog.init(); (Fixed!)
+        blog.init();
         model.addAttribute("blog",blog);
 
         return "/admin/edit";

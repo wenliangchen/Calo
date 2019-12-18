@@ -6,8 +6,9 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table(name="t_user")
+@Table(name = "t_user")
 public class User {
+
     @Id
     @GeneratedValue
     private Long id;
@@ -15,15 +16,16 @@ public class User {
     private String username;
     private String password;
     private String email;
-    private String avator;
+    private String avatar;
     private Integer type;
     @Temporal(TemporalType.TIMESTAMP)
-    private Date createdTime;
+    private Date createTime;
     @Temporal(TemporalType.TIMESTAMP)
-    private Date UpdatedTime;
+    private Date updateTime;
 
     @OneToMany(mappedBy = "user")
-    private List<Blog> blogs =new ArrayList<>();
+    private List<Blog> blogs = new ArrayList<>();
+
     public User() {
     }
 
@@ -67,12 +69,12 @@ public class User {
         this.email = email;
     }
 
-    public String getAvator() {
-        return avator;
+    public String getAvatar() {
+        return avatar;
     }
 
-    public void setAvator(String avator) {
-        this.avator = avator;
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
     }
 
     public Integer getType() {
@@ -83,21 +85,22 @@ public class User {
         this.type = type;
     }
 
-    public Date getCreatedTime() {
-        return createdTime;
+    public Date getCreateTime() {
+        return createTime;
     }
 
-    public void setCreatedTime(Date createdTime) {
-        this.createdTime = createdTime;
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
     }
 
-    public Date getUpdatedTime() {
-        return UpdatedTime;
+    public Date getUpdateTime() {
+        return updateTime;
     }
 
-    public void setUpdatedTime(Date updatedTime) {
-        UpdatedTime = updatedTime;
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
     }
+
 
     public List<Blog> getBlogs() {
         return blogs;
@@ -115,10 +118,10 @@ public class User {
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", email='" + email + '\'' +
-                ", avator='" + avator + '\'' +
+                ", avatar='" + avatar + '\'' +
                 ", type=" + type +
-                ", createdTime=" + createdTime +
-                ", UpdatedTime=" + UpdatedTime +
+                ", createTime=" + createTime +
+                ", updateTime=" + updateTime +
                 '}';
     }
 }

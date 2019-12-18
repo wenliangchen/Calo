@@ -58,7 +58,7 @@
             <div class="required field">
                 <div class="ui left labeled input">
                     <div class="ui selection compact blue basic dropdown label">
-                        <input type="hidden" value="Own" name="flag" th:value="${flag}">
+                        <input type="hidden" value="Own" name="flag" th:value="*{flag}">
                         <i class="dropdown icon"></i>
                         <div class="text">Own</div>
                         <div class="menu">
@@ -67,12 +67,12 @@
                             <div class="item" data-value="Own">Own</div>
                         </div>
                     </div>
-                    <input type="text" name="title" placeholder="title" th:value="${title}">
+                    <input type="text" name="title" placeholder="title" th:value="*{title}">
                 </div>
             </div>
             <div class="required field">
                 <div id="md-content" style="z-index: 1!important;">
-                <textarea placeholder="Blog content" style="display: none" name="content" th:text="${content}"></textarea>
+                <textarea placeholder="Blog content" style="display: none" name="content" th:text="*{content}"></textarea>
                 </div>
             </div>
 
@@ -81,11 +81,11 @@
                     <div class="ui left labeled action input">
                         <label class="ui  compact blue basic label">Catalogue</label>
                         <div class="ui fluid selection dropdown">
-                            <input type="hidden" name="type.id" th:value="${type}!=null ? ${type.id}">
+                            <input type="hidden" name="type.id" th:value="*{type}!=null ? *{type.id}">
                             <i class="dropdown icon"></i>
                             <div class="default text">Catalogue</div>
                             <div class="menu">
-                                <div th:each="type : ${types}" class="item" data-value="1" th:data-value="${type.id}" th:text="${type.name}">menal</div>
+                                <div th:each="type : ${types}" class="item" data-value="1" th:data-value="*{type.id}" th:text="*{type.name}">menal</div>
                             </div>
                         </div>
                     </div>
@@ -94,7 +94,7 @@
                     <div class="ui left labeled action input">
                         <label class="ui compact blue basic label">Tags</label>
                         <div class="ui fluid multiple search selection dropdown">
-                            <input type="hidden" name="tagIds" th:value="${tagIds}">
+                            <input type="hidden" name="tagIds" th:value="*{tagIds}">
                             <i class="dropdown icon"></i>
                             <div class="default text">Tags</div>
                             <div class="menu">
@@ -107,12 +107,12 @@
             <div class="required field">
                 <div class="ui left labeled input">
                     <label class="ui blue basic label">Picture</label>
-                    <input type="text" name="firstPicture" th:value="${firstPicture}" placeholder="imageForIndex">
+                    <input type="text" name="firstPicture" th:value="*{firstPicture}" placeholder="imageForIndex">
                 </div>
             </div>
 
             <div class="required field">
-                <textarea name="description" th:text="${description}" placeholder="Blog Brief Description" maxlength="200"></textarea>
+                <textarea name="description" th:text="*{description}" placeholder="Blog Brief Description" maxlength="200"></textarea>
             </div>
 
             <div class="inline fields">
