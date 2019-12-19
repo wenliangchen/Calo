@@ -29,8 +29,8 @@ public class TypeServiceImpl implements TypeService {
 
     @Transactional
     @Override
-    public Optional<Type> getType(Long id) {
-        return typeRepository.findById(id);
+    public Type getType(Long id) {
+        return typeRepository.findOne(id);
     }
 
     @Transactional

@@ -11,7 +11,7 @@ public interface TagService {
 
     Tag saveTag(Tag tag);
 
-    Optional<Tag> getTag(Long id);
+    Tag getTag(Long id);
 
     Tag getTagByName(String name);
 

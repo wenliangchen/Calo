@@ -16,7 +16,7 @@ public class Comment {
     private String content;
     private String avatar;
     @Temporal(TemporalType.TIMESTAMP)
-    private Date createdTime;
+    private Date createTime;
 
     @ManyToOne
     private Blog blog;
@@ -26,6 +26,8 @@ public class Comment {
 
     @ManyToOne
     private Comment parentComment;
+
+    private boolean adminComment;
 
     public Comment() {
     }
@@ -70,12 +72,12 @@ public class Comment {
         this.avatar = avatar;
     }
 
-    public Date getCreatedTime() {
-        return createdTime;
+    public Date getCreateTime() {
+        return createTime;
     }
 
-    public void setCreatedTime(Date createdTime) {
-        this.createdTime = createdTime;
+    public void setCreateTime(Date createdime) {
+        this.createTime = createdime;
     }
 
     public Blog getBlog() {
@@ -102,6 +104,14 @@ public class Comment {
         this.parentComment = parentComment;
     }
 
+    public boolean isAdminComment() {
+        return adminComment;
+    }
+
+    public void setAdminComment(boolean adminComment) {
+        this.adminComment = adminComment;
+    }
+
     @Override
     public String toString() {
         return "Comment{" +
@@ -110,7 +120,12 @@ public class Comment {
                 ", email='" + email + '\'' +
                 ", content='" + content + '\'' +
                 ", avatar='" + avatar + '\'' +
-                ", createdTime=" + createdTime +
+                ", createTime=" + createTime +
+                ", blog=" + blog +
+                ", replyComments=" + replyComments +
+                ", parentComment=" + parentComment +
+                ", adminComment=" + adminComment +
                 '}';
     }
+
 }

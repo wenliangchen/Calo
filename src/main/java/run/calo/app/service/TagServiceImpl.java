@@ -29,8 +29,8 @@ public class TagServiceImpl implements TagService{
     }
     @Transactional
     @Override
-    public Optional<Tag> getTag(Long id) {
-        return tagRepository.findById(id);
+    public Tag getTag(Long id) {
+        return tagRepository.findOne(id);
     }
     @Transactional
     @Override

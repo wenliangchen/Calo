@@ -42,7 +42,7 @@
                     <div class="ui top attached segment">
                         <div class="ui middle two column grid">
                             <div class="column">
-                                <h3 class="ui teal header">Blog</h3>
+                                <h3 class="ui blue header">Blog</h3>
                             </div>
                             <div class="right aligned column">
                                 About <h3 class="ui red header m-inline-block m-front-thin" th:text="${page.totalElements}">12</h3> Blog
@@ -55,7 +55,7 @@
                             <div class="ui middle aligned mobile reversed stackable grid">
                                 <div class="ui eleven wide column">
                                     <h3 class="ui header"><a href="#" th:href="@{/blog/{id}(id=${blog.id})}" class="m-black"  target="_blank" th:text="${blog.title}"> Are u know me?</a></h3>
-                                    <p class="m-front" th:text="|${blog.description}|">do you know me?????</p>
+                                    <p class="m-front" th:text="|${blog.description}......|">do you know me?????</p>
                                     <div class="ui grid">
                                         <div class="eleven wide column">
                                             <div class="ui mini horizontal link list">
@@ -398,13 +398,13 @@
                                     <i class="idea icon"></i> Catalogue
                                 </div>
                                 <div class="right aligned column">
-                                    <a href="#" target="_blank">More<i class="angle double right icon"></i> </a>
+                                    <a href="#" th:href="@{/types/-1}" target="_blank">More<i class="angle double right icon"></i> </a>
                                 </div>
                             </div>
                         </div>
                         <div class="ui blue segment">
                             <div class="ui fluid vertical menu" >
-                                <a href="#" class="item" th:each="type : ${types}">
+                                <a href="#" th:href="@{/types/{id}(id=${type.id})}" target="_blank" class="item" th:each="type : ${types}">
                                     <span th:text="${type.name}">Study</span>
                                     <div class="ui blue basic left pointing label" th:text="${#arrays.length(type.blogs)}">13</div>
                                 </a>
@@ -452,12 +452,12 @@
                                     <i class="idea icon"></i> Tags
                                 </div>
                                 <div class="right aligned column">
-                                    <a href="#" target="_blank">More<i class="angle double right icon"></i> </a>
+                                    <a href="#" th:href="@{/tags/-1}"  target="_blank">More<i class="angle double right icon"></i> </a>
                                 </div>
                             </div>
                         </div>
                         <div class="ui blue segment">
-                            <a href="#" target="_blank" class="ui blue basic left pointing label m-margin-tb-tiny" th:each="tag : ${tags}"><span th:text="${tag.name}"> fffffffffff </span> <div class="detail" th:text="${#arrays.length(tag.blogs)}">11</div> </a>
+                            <a href="#" th:href="@{/tags/{id}(id=${tag.id})}" target="_blank" class="ui blue basic left pointing label m-margin-tb-tiny" th:each="tag : ${tags}"><span th:text="${tag.name}"> fffffffffff </span> <div class="detail" th:text="${#arrays.length(tag.blogs)}">11</div> </a>
                             <!--/*-->
 
                             <a href="#" target="_blank" class="ui blue basic left pointing label m-margin-tb-tiny">fffffffffff  <div class="detail">11</div> </a>

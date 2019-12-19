@@ -11,7 +11,7 @@ public interface TypeService {
 
     Type saveType(Type type);
 
-    Optional<Type> getType(Long id);
+    Type getType(Long id);
 
     Type getTypeByName(String name);
 

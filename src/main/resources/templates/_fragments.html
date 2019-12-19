@@ -19,10 +19,10 @@
         <div class="ui inverted secondary stackable menu ">
             <h2 class = "ui blue header item">Blog</h2>
             <a href="/" class="m-item item m-hidden-mobile" th:classappend="${n==1} ? 'active'"><i class="home icon"></i> Main</a>
-            <a href="#" class="m-item item m-hidden-mobile" th:classappend="${n==2} ? 'active'"><i class="idea icon"></i>Catalogue</a>
-            <a href="index.html" class="m-item item m-hidden-mobile" th:classappend="${n==3} ? 'active'"><i class="tags icon"></i>Tags</a>
-            <a href="index.html" class="m-item item m-hidden-mobile" th:classappend="${n==4} ? 'active'"><i class="clone icon"></i>Archive</a>
-            <a href="index.html" class="m-item item m-hidden-mobile" th:classappend="${n==5} ? 'active'"><i class="info icon"></i>About</a>
+            <a href="#" th:href="@{/types/-1} " class="m-item item m-hidden-mobile" th:classappend="${n==2} ? 'active'"><i class="idea icon"></i>Catalogue</a>
+            <a href="#" th:href="@{/tags/-1} "class="m-item item m-hidden-mobile" th:classappend="${n==3} ? 'active'"><i class="tags icon"></i>Tags</a>
+            <a href="#" th:href="@{/archive/-1} "class="m-item item m-hidden-mobile" th:classappend="${n==4} ? 'active'"><i class="clone icon"></i>Archive</a>
+            <a href="#" th:href="@{/about} "class="m-item item m-hidden-mobile" th:classappend="${n==5} ? 'active'"><i class="info icon"></i>About</a>
             <div class="right m-item item m-hidden-mobile">
                 <form name="search" action="#" th:action="@{/search}" method="post" target="_blank">
                 <div class="ui icon inverted transparent input">
@@ -50,19 +50,19 @@
                     </div>
                 </div>
             </div>
-            <div class="three wide column">
+            <div class="three wide column" >
                 <h4 class="ui inverted header m-front-thin m-front-spaced ">New Blog:</h4>
-                <div class="ui inverted link list">
-                    <a href="#" class="item">The story</a>
-                    <a href="#" class="item">The story</a>
-                    <a href="#" class="item">The story</a>
+                <div id="newblogs-container" th:fragment="newblogList">
+                    <div class="ui inverted link list" th:each="blog : ${newBlog}">
+                        <a href="#" th:href="@{/blog/{id}(id=${blog.id})}" target="_blank" class="item"  th:text="${blog.title}">The story</a>
+                    </div>
                 </div>
             </div>
             <div class="three wide column">
                 <h4 class="ui inverted header m-front-thin m-front-spaced ">Contact:</h4>
                 <div class="ui inverted link list">
-                    <a href="#" class="item">wenliangchen@yahoo.com</a>
-                    <a href="#" class="item">Github</a>
+                    <div class="item" th:text="#{index.email}">wenliangchen#yahoo.com</div>
+                    <a href="#" th:href="#{index.github}" target="_blank" class="item">Github</a>
                 </div>
             </div>
             <div class="seven wide column">
@@ -85,6 +85,10 @@
     <script src="../static/lib/tocbot/tocbot.min.js" th:src="@{/lib/tocbot/tocbot.min.js}"></script>
     <script src="../static/lib/qrcode/qrcode.min.js" th:src="@{/lib/qrcode/qrcode.min.js}"></script>
     <script src="../static/lib/waypoints/jquery.waypoints.min.js" th:src="@{/lib/waypoints/jquery.waypoints.min.js}"></script>
+
+    <script>
+        $('#newblogs-container').load(/*[[@{/foot/newblog}]]*/"/footer/newblog");
+    </script>
 </th:block>
 
 

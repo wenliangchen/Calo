@@ -6,6 +6,7 @@ import run.calo.app.po.Blog;
 import run.calo.app.vo.BlogQuery;
 
 import java.util.List;
+import java.util.Map;
 
 
 public interface BlogService {
@@ -22,6 +23,10 @@ public interface BlogService {
     Page<Blog> listBlog(String query,Pageable pageable);
 
     List<Blog> listRecommendBlogTop(Integer size);
+
+    Map<String,List<Blog>> archiveBlog();
+
+    Long countBlog();
 
     Blog saveBlog(Blog blog);
 
